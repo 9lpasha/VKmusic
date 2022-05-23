@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="files/main.css">
+    <script src="files/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(document).on('click','.footer_player',function(){
+                $('.popup_player_wrapper').fadeIn(300);
+            });
+
+            $(document).on('click','.popup_player_wrapper',function(){
+                if($('.popup_player_content').is(":visible")) $('.popup_player_wrapper').fadeOut(300);
+            });
+        });
+    </script>
+</head>
+<body>
+<audio preload="true" style="display: none" id="player" crossorigin></audio>
+<div class="wrapper">
+    <div class="header_wrapper">
+        <div class="header"><a href="/"><div class="back">Новинки</div></a><div class="tab" style="display: none;">Новинки</div><div class="menu"><ul><a href="/"><li class="music">Музыка ВКонтакте</li></a><a href="/audios420202997"><li class=""><div class="image image_camera24" style="background-size: 16px;"></div>Юлия Князева</li></a><a href="/fave"><li class="fave">Избранное</li></a><a href="/write"><li class="write">Напишите нам</li></a><a href="/about"><li class="about">О сервисе</li></a></ul></div><a href="/settings" class="settings"></a></div>
+    </div>
+    <div class="section_wrapper">
+        <div class="search"><input type="text" placeholder="Поиск" value=""><div class="close" style="display: none;"></div></div>
+        <div class="spinner"></div>
+        <div class="content"><div class="audios"><div class="audio">
+            <div class="cover" style="background: url('https://sun1-15.userapi.com/impf/vuO-3OwuM1jjsu5LateEyB6ptMe1crsNyJlfhA/UUSPF_MtPYY.jpg?size=68x0&quality=90&sign=639dbde28a26f728e08bc160e58988fd&c_uniq_tag=FfFnT2i04ovD-84bncdENcIlgG0xb6QAS1GP-rijd_A') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Хобби <span class="author author_rightfromtitle" style="display: none"> - ANNA ASTI, Филипп Киркоров</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">ANNA ASTI, Филипп Киркоров</div>
+            <div class="duration" data="205">3:25</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-22.userapi.com/impf/EeLngAIYIQVUcZJx8J19_ApBanViAwpkcrl5aA/_XW3YzzjXFk.jpg?size=68x0&quality=90&sign=dab89c23835ac5703f8128e6215ecde0&c_uniq_tag=eQG50CdN6gC8KNz1BQLjbiVmREyYRhcfMKOALzbgXxw') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Отпускай <span class="author author_rightfromtitle" style="display: none"> - Три дня дождя</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Три дня дождя</div>
+            <div class="duration" data="207">3:27</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-54.userapi.com/impf/mFAk7W2bQ0EAXeXf7DJ2Yz7lvvNN_ebgfHcBLw/981OEJnBYj4.jpg?size=68x0&quality=90&sign=b389e0e734b1de341560f082edf0f8ac&c_uniq_tag=BEZPwV26UNMal6KXSGRN6-ilfpr76RwGHVb1Ndm7hok') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Губы <span class="author author_rightfromtitle" style="display: none"> - Andro</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Andro</div>
+            <div class="duration" data="94">1:34</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-54.userapi.com/impf/ZpR32zqcWZaSstA6JrOJeI2GRx6Ip8Moith9eA/CNgINgJtxrE.jpg?size=68x0&quality=90&sign=eb0e3aafe958d6593fd79ea5226260db&c_uniq_tag=g9av--fKcyBbD4wcalFi_lSNqorOZrKFxAVRoXl_XDk') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Знаешь ли ты <span class="author author_rightfromtitle" style="display: none"> - Дима Билан, МакSим</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Дима Билан, МакSим</div>
+            <div class="duration" data="228">3:48</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-95.userapi.com/impf/g57ZlTYITpLxaLGJ4mlKjQpJ9uC_XcGwfhFXxg/K1Xw1_3O_Eg.jpg?size=68x0&quality=90&sign=5f3fbe26a305424a3b5c8a33814a9489&c_uniq_tag=_s85e5T8eauvZDtzgrNAlpK9qrQAutcVIA12xJkvTE8') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title explicit">Давно <span class="author author_rightfromtitle" style="display: none"> - OG Buda</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">OG Buda</div>
+            <div class="duration" data="151">2:31</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-13.userapi.com/impf/wZf6q1Lox8bqtyTpfRpSI-VPK9-4BfU32oDYqA/JRZU2q35RFc.jpg?size=68x0&quality=90&sign=99127468524bdede7378ec3a40860e7d&c_uniq_tag=cLrA9piAYzyjcJF6R869YAvM_eZPUPeGTRMeHVGLJLo') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">По душам <span class="author author_rightfromtitle" style="display: none"> - МОТ</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">МОТ</div>
+            <div class="duration" data="146">2:26</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-29.userapi.com/impf/Qy2_5K55t6SjIX0nYd1g85l9-RNbXbqBzYBTcA/A6QXMTbGKC0.jpg?size=68x0&quality=90&sign=cc0ae9378d93ccf9c06c66b94a8c7702&c_uniq_tag=IqpCvk0GdS5zGAEWKsq1JPiQRZwPEou2EceptgsYoM4') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Наполеон (DJ Mixoid Scratch) <span class="author author_rightfromtitle" style="display: none"> - Витя АК, Джарахов</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Витя АК, Джарахов</div>
+            <div class="duration" data="155">2:35</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-13.userapi.com/impf/nyLM95ofGvRk_UE4oG4ZKCa8TXz9Yb3mV15GWA/oaVESLSaZh8.jpg?size=68x0&quality=90&sign=b36fbe5cb4d92cc9e3a23124b1934b4a&c_uniq_tag=bNoVPKVua2_4jvQeXYuD_629kTMfHwdMrSW4rsFcAQA') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Одиночка <span class="author author_rightfromtitle" style="display: none"> - Руки Вверх</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Руки Вверх</div>
+            <div class="duration" data="166">2:46</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-83.userapi.com/impf/nw8TkezzaJrSub2OjhTqikvf6ZDb12oFLgm8Qg/h_uJbu2i9yo.jpg?size=68x0&quality=90&sign=f130930602918f836d8894c2bf188de9&c_uniq_tag=1Cx9LzL85qxn0UVOxDqjafKjc-41qGBi4STD0kWuzR8') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">GIRI <span class="author author_rightfromtitle" style="display: none"> - MACAN</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">MACAN</div>
+            <div class="duration" data="160">2:40</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-88.userapi.com/impf/eVOmeVxEQvHrJ9UErxo38EV2Oeq60N6FMRVFZg/DGfFMZvodns.jpg?size=68x0&quality=90&sign=b1d2862e67fcbbacce768afa91116469&c_uniq_tag=aLYwnhfRkj4yvPfzD278RIEM2r-voByEX81mWwZtfwg') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Помутнел алый закат <span class="author author_rightfromtitle" style="display: none"> - T-Fest</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">T-Fest</div>
+            <div class="duration" data="173">2:53</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-89.userapi.com/impf/hx_nvJJBlarVwhxrI0DNbdwwupbx4b2mBANIpw/thOJmxXeiec.jpg?size=68x0&quality=90&sign=285415977df8d055405b72fcd2ff4b91&c_uniq_tag=wSu6-XtbvK8BD6yVfhFzOMlky5oV3CaEADLzVMQNtes') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title explicit">Иностранец <span class="author author_rightfromtitle" style="display: none"> - Коста Лакоста</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Коста Лакоста</div>
+            <div class="duration" data="159">2:39</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-27.userapi.com/impf/rQTCNEF3iRHCFnmxUwQ7IT6tbwfb9DznEMQc1w/PZ5LXoeFEe8.jpg?size=68x0&quality=90&sign=0a1424a41e663da0c4350675510c9cae&c_uniq_tag=PpheFYiqyRFY5pFztr1eW-PBKxkrRpS7uQ0rghTd8Yg') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Человек <span class="author author_rightfromtitle" style="display: none"> - Миша М</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Миша М</div>
+            <div class="duration" data="134">2:14</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-26.userapi.com/impf/rIrGf0DEMCR0YjN3Tx6MsCRwHs8QhzHTdK4SSw/WhlQw6OmQvI.jpg?size=68x0&quality=90&sign=e14dec2ce1b809a2ea50337ae87c7586&c_uniq_tag=DLgchCqR8yLPnLfzZ5p11zmpJQaWM0-0ukiuWIHb4xo') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Не пара <span class="author author_rightfromtitle" style="display: none"> - Тима Акимов</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Тима Акимов</div>
+            <div class="duration" data="162">2:42</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-97.userapi.com/impf/HtUuFMW_2xyfjfeBKgnwz5fSwwd5zl-war42Hw/vWjMsEvIyPg.jpg?size=68x0&quality=90&sign=e60195402056131f4f75290715dd09c0&c_uniq_tag=f7KV6ZVGInMmnELr0UerRfEROdklqinKUMXqiA9e8ho') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Saint Laurent <span class="author author_rightfromtitle" style="display: none"> - SLAVA MARLOW</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">SLAVA MARLOW</div>
+            <div class="duration" data="158">2:38</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-93.userapi.com/impf/11rD-kaNeoC9Z8fhWSqBOFCOgUuwqKfqA4bV8g/xzvASeHcUkI.jpg?size=68x0&quality=90&sign=ecf14f94931ec0428cb7073b0fdd94b7&c_uniq_tag=N-iUYs089wkDv4dqDoBb8_fi9DM93DJyUGH9z_2oSqw') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title explicit">ВУАЛЯ <span class="author author_rightfromtitle" style="display: none"> - SQWOZ BAB, Джарахов</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">SQWOZ BAB, Джарахов</div>
+            <div class="duration" data="108">1:48</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-57.userapi.com/impf/wsT5_xvB0867yR51PNHQGKeZ4xgbVt26hcLcaA/WtOuSNz5LEU.jpg?size=68x0&quality=90&sign=c4cd9cd597127ab6e4e31a7344338e76&c_uniq_tag=3V87C5WV6SxH8EBWIahtqVqZMCKO-86UZ0uMSbKZfIA') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Глаза счастливые не врут <span class="author author_rightfromtitle" style="display: none"> - Леша Свик</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Леша Свик</div>
+            <div class="duration" data="155">2:35</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-85.userapi.com/impf/Li5NnBWLRWzh1Hdu3NnwMIWoVSwBQUoVHWDXIg/OWbo737_Vc0.jpg?size=68x0&quality=90&sign=c3cb0b63e38bac8b4cf55febe3411829&c_uniq_tag=xPQWQzKfHRmBARtj2twJLQ_HwHPz9iOm0db3XxbntdM') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Чаки <span class="author author_rightfromtitle" style="display: none"> - CAPTOWN</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">CAPTOWN</div>
+            <div class="duration" data="130">2:10</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-95.userapi.com/impf/QF6j9AairUNrGUMyXQBx_gipJN7wY-Ndx9Z6Ew/3-cBWronBrQ.jpg?size=68x0&quality=90&sign=180a476f1713512bb3f8f6f8afd75f92&c_uniq_tag=B7IP8Bx3q0kXDtsYkIFT_a16ecllVeymBuhuGBaILJI') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Сирена <span class="author author_rightfromtitle" style="display: none"> - polnalyubvi</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">polnalyubvi</div>
+            <div class="duration" data="157">2:37</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-25.userapi.com/impf/Wm-LqL0Siftltx1bQv8k3jk55xjTqVBLrYAx_g/cZBMu-U_uZ4.jpg?size=68x0&quality=90&sign=c475f72fe753c68164f2df24126b9600&c_uniq_tag=cLT3D01hsFaVB1aTYixVTZFo6DJIpwvwK2ubEy_5kFs') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Номер <span class="author author_rightfromtitle" style="display: none"> - MORGENSHTERN</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">MORGENSHTERN</div>
+            <div class="duration" data="118">1:58</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-26.userapi.com/impf/QHHnraSdMkhoONSq7bYfWt6wBbnHz2_tiv3dXg/X7C4nyvF72k.jpg?size=68x0&quality=90&sign=6c584092f9f59a22d5a3df69daf1dab7&c_uniq_tag=mBCO67D7yevCdWESrdikRG9UoK8iLe9FrVgX24GILvQ') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Уберегу ли тебя <span class="author author_rightfromtitle" style="display: none"> - Ёлка</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Ёлка</div>
+            <div class="duration" data="289">4:49</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-14.userapi.com/impf/jn0DCETFWf-QFTZaIlRo5DtRn561CDXqiw6Q9w/2p27eVaxkP8.jpg?size=68x0&quality=90&sign=b7ce1d80396e4c249e2af4c67a39ebf8&c_uniq_tag=zz5aaUOcDj4pNb5SM8Tu70UA1OcGyT0nPM8OacL19g0') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Малышка <span class="author author_rightfromtitle" style="display: none"> - 10AGE</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">10AGE</div>
+            <div class="duration" data="129">2:09</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-29.userapi.com/impf/PnBAfD4j8h16mDoDKa8TIqFsMbn2GMgDLT_vmA/8IE3udrdCxc.jpg?size=68x0&quality=90&sign=ae911fdfd8a59aa2b599afc01b0f7c40&c_uniq_tag=xnoBd2xSM61oPhls5i5ArUZvt3sR82V4LekHJi_S9xE') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title explicit">Живой <span class="author author_rightfromtitle" style="display: none"> - NЮ, кровь из носа</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">NЮ, кровь из носа</div>
+            <div class="duration" data="171">2:51</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-17.userapi.com/impf/HK194gMK5LmXrJ3dJ9trxLzvl6Vt-OailfOggw/Euxum1Olu34.jpg?size=68x0&quality=90&sign=4d578df1b41ff921e6837f414b64ac72&c_uniq_tag=KRY8dC7tFzI8X-y8AYQeSXIbAqi6rQ4RwO9camEXxFo') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title explicit">Бензин <span class="author author_rightfromtitle" style="display: none"> - Маленький ярче feat. White Punk</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Маленький ярче feat. White Punk</div>
+            <div class="duration" data="141">2:21</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-96.userapi.com/impf/jqxDrmtCOw4rnHyQFge6CFj5dn-9BONOQFaZtA/jUdX_xvA0hU.jpg?size=68x0&quality=90&sign=daaecec1ac98794cbac65754bbfc7760&c_uniq_tag=hJGIe5AG0fId0x6jfOpjjA8pmHc5XeZfqRvZV6DPqCE') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Restart <span class="author author_rightfromtitle" style="display: none"> - Звонкий</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Звонкий</div>
+            <div class="duration" data="163">2:43</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-27.userapi.com/impf/WAyp1XW7HKjjhLd3s7WHOAbiEnggHnhFrXR8Eg/T5F85oA7F_w.jpg?size=68x0&quality=90&sign=304d3135a6cba83f0bab4a0c34a2aa7e&c_uniq_tag=XbR_XVpIRq8eArB06pCnzkvpYaKMuzvJGSjbP2MdtT8') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">По Садовому <span class="author author_rightfromtitle" style="display: none"> - Зомб</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Зомб</div>
+            <div class="duration" data="162">2:42</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-56.userapi.com/impf/wIbLfNpuQ9kpsqR5pgbrSd28SjZgQ8h0JlTYjQ/8TC4sDoMn6o.jpg?size=68x0&quality=90&sign=12ad51644c2fb39b2d340687f887aeb9&c_uniq_tag=ovZT-HHcNvn9rUw91J43mUbGKdvNClM4R9RV1HGsN_E') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title explicit">ПРОБЛЕМЫ <span class="author author_rightfromtitle" style="display: none"> - ПОЛ ПУНШ</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">ПОЛ ПУНШ</div>
+            <div class="duration" data="150">2:30</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-99.userapi.com/impf/GYMs7eq1HFULe4RlDJ9MOkPlpqtIt96ZkfeoJQ/psu4BVtPXs0.jpg?size=68x0&quality=90&sign=573e85aeb0238d5c3c5c678b96abe338&c_uniq_tag=seQDL319yT0K1QT2ZhY3Qi02ocs2vBy9vjLyQOYPRc4') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title explicit">Tom Sawyer <span class="author author_rightfromtitle" style="display: none"> - PKHAT, KURT92</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">PKHAT, KURT92</div>
+            <div class="duration" data="137">2:17</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-29.userapi.com/impf/E1EU7KS0YxS_TCFldu2ziX7TnWX1QDhcumgHhA/TJc0Yn97T0E.jpg?size=68x0&quality=90&sign=bc1e495c52f46bd766d97cdc2ca5634a&c_uniq_tag=Y8EtcXNhZvJyNiDxzlypC2mmK4_dlnYssLxbBu3VRNk') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">DVPV <span class="author author_rightfromtitle" style="display: none"> - Intelligency feat. Palina</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Intelligency feat. Palina</div>
+            <div class="duration" data="185">3:05</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-22.userapi.com/impf/L-kTXoi1gjgWZOjgqwXUpIIrLj2K9Xo6PJUKyw/ZWycU68TtRI.jpg?size=68x0&quality=90&sign=8748e453f84a58c6c4eff2929871c1ba&c_uniq_tag=a6fUioYRyY9ZlBRrfrXW0Pz2HWA1QteAKtzZf8qvU0Y') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">Пополам <span class="author author_rightfromtitle" style="display: none"> - Кристина Кошелева</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">Кристина Кошелева</div>
+            <div class="duration" data="153">2:33</div>
+            <div class="download"></div>
+        </div><div class="audio">
+            <div class="cover" style="background: url('https://sun1-16.userapi.com/impf/R9VQAOZT9fcsA9BkGDKCuUXLQWtdr8gNoKBziA/cmEkxPtz-FE.jpg?size=68x0&quality=90&sign=142a33e7ab025a377e44a3cb905ec2c0&c_uniq_tag=iGds_iBkNNJMeVecyUYA5zwK1CQmZx89bThZ6gMTJSg') center / cover no-repeat;">
+                <div class="play" data=""></div>
+            </div>
+            <div class="info">
+                <div class="title">don’t cry <span class="author author_rightfromtitle" style="display: none"> - escape</span></div>
+            </div>
+            <div class="player_wrapper" style="display: none">
+                <div class="progress_wrap">
+                    <div class="progress_seek"></div>
+                    <div class="progress_played"></div>
+                    <div class="progress_buffered"></div>
+                    <div class="progress_transition"></div>
+                </div>
+                <div class="volume_wrap">
+                    <div class="volume_display"></div>
+                    <div class="volume_value"></div>
+                    <div class="volume_transition"></div>
+                </div>
+            </div>
+            <div class="author">escape</div>
+            <div class="duration" data="132">2:12</div>
+            <div class="download"></div>
+        </div></div>
+    </div>
+</div>
+    <div class="footer_player_wrapper">
+        <div class="footer_player">
+            <div class="footer_pause"></div>
+            <div class="audio_info">
+                <div class="audio_title">Хобби</div>
+                <div class="audio_author">ANNA ASTI, Филипп Киркоров</div>
+            </div>
+            <div class="footer_next"></div>
+        </div>
+    </div>
+    <div class="popup_player_wrapper">
+        <div class="popup_player_content">
+            <div class="cover" style="background-image:url('https://sun1-15.userapi.com/impf/vuO-3OwuM1jjsu5LateEyB6ptMe1crsNyJlfhA/UUSPF_MtPYY.jpg?size=80x0&quality=90&sign=8d24622c31d51c1916630381162457b8')"></div>
+            <div class="info">
+                <div class="title">Хобби</div>
+                <div class="author">ANNA ASTI, Филипп Киркоров</div>
+            </div>
+            <div class="progress_wrap">
+                <div class="progress_seek"></div>
+                <div class="progress_played"></div>
+                <div class="progress_buffered"></div>
+                <div class="progress_transition_circle"></div>
+            </div>
+            <div class="durations_wrap">
+                <div class="duration_start">00:00</div>
+                <div class="duration_end">03:00</div>
+            </div>
+            <div class="buttons_wrap">
+                <div class="prev"></div>
+                <div class="pause"></div>
+                <div class="next"></div>
+            </div>
+            <div class="button_bottom_wrap">
+                <div class="shuffle"></div>
+                <div class="repeat"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.plyr.io/1.8.2/plyr.js"></script>
+<script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
+<script>
+    let curTrack
+    let intCurTime
+    let audio = document.querySelector('#player');
+    let hls = new Hls();
+    document.querySelectorAll('.cover').forEach((el)=>{
+        el.onclick = (e)=>{
+            document.querySelectorAll('.audio .author').forEach((el)=>{el.style.display = 'block'})
+            document.querySelectorAll('.audio .author_rightfromtitle').forEach((el)=>{el.style.display = 'none'})
+            document.querySelectorAll('.player_wrapper').forEach((el)=>{el.style.display = 'none'})
+            curTrack ? curTrack.pause() : null
+            clearInterval(intCurTime)
+            hls.loadSource('http://89.223.70.28/file.php?audio=-2001673824_108673824&action=play');
+            hls.attachMedia(audio);
+            audio.play()
+            let curTrackRow
+            if(e.target.classList.contains('play'))
+                curTrackRow = e.target.parentNode.parentNode
+            else
+                curTrackRow = e.target.parentNode
+            curTrackRow.querySelectorAll('.audio .author').forEach((el)=>{el.style.display = 'none'})
+            curTrackRow.querySelectorAll('.audio .author_rightfromtitle').forEach((el)=>{el.style.display = 'inline-block'})
+            curTrackRow.querySelector('.player_wrapper').style.display = 'flex'
+            document.querySelector('.footer_player .audio_title').textContent = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[0]
+            document.querySelector('.footer_player .audio_author').textContent = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[1]
+            document.querySelector('.popup_player_content .title').textContent = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[0]
+            document.querySelector('.popup_player_content .author').textContent = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[1]
+            document.querySelector('.popup_player_content .cover').style.backgroundImage = curTrackRow.querySelector('.audio .cover').style.backgroundImage
+            document.querySelector('.popup_player_content .duration_end').textContent = curTrackRow.querySelector('.duration').innerText
+            console.log(curTrack)
+            document.querySelector('.progress_seek').addEventListener('mousedown', () => {
+
+            })
+            intCurTime = setInterval(() => {
+                curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime/hls.media.duration*100+'%'
+                curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime/hls.media.duration*100+'%'
+                document.querySelector('.popup_player_content .progress_played').style.width = hls.media.currentTime/hls.media.duration*100+'%'
+                document.querySelector('.popup_player_content .progress_transition_circle').style.left = hls.media.currentTime/hls.media.duration*100+'%'
+                curTrackRow.querySelector('.progress_buffered').style.width = hls.media.buffered.end(0) / hls.media.duration * 100 + '%'
+                document.querySelector('.popup_player_content .progress_buffered').style.width = hls.media.buffered.end(0) / hls.media.duration * 100 + '%'
+                let curFormatTime
+                parseInt(hls.media.currentTime/60) > 10 ? curFormatTime = parseInt(hls.media.currentTime/60) + ':' : curFormatTime = '0' + parseInt(hls.media.currentTime/60) + ':'
+                parseInt(hls.media.currentTime%60) > 10 ? curFormatTime += parseInt(hls.media.currentTime%60) : curFormatTime += '0' + parseInt(hls.media.currentTime%60)
+                document.querySelector('.popup_player_content .duration_start').textContent = curFormatTime
+                if(hls.media.ended){
+                    curTrackRow.nextSibling.children[1].click()
+                }
+            }, 100)
+        }
+    })
+</script>
+</body>
+</html>
