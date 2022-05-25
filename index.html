@@ -165,8 +165,7 @@
                     console.log(withinBoundaries1, withinBoundaries2)
                     if (!withinBoundaries1 && !withinBoundaries2) {
                         progressOrNot1 = 1
-                    }
-                    else
+                    } else
                         progressOrNot1 = 0
                 }
                 window.onmouseup = (e) => {
@@ -175,8 +174,7 @@
                     console.log(withinBoundaries1, withinBoundaries2)
                     if (!withinBoundaries1 && !withinBoundaries2) {
                         progressOrNot2 = 1
-                    }
-                    else
+                    } else
                         progressOrNot2 = 0
                 }
                 curTrackRow.querySelector('.progress_seek').style.background = '#2688eb linear-gradient(45deg,rgba(255,255,255,.55) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.55) 50%,rgba(255,255,255,.55) 75%,transparent 75%,transparent)'
@@ -217,7 +215,6 @@
 
             document.querySelectorAll('.audio').forEach((el) => {
                 el.onclick = (e) => {
-                    if(!(!progressOrNot1&&progressOrNot2)){
                     myObj.forEach((el, i) => {
                         document.querySelectorAll('.audio')[i].querySelector('.duration').innerText = `-${secToMin(el.duration)}`
                     })
@@ -235,7 +232,7 @@
                         document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
                         if (curTrack && curTrack.substr(0, curTrack.length - 6) == curTrackRow.innerText.substr(0, curTrackRow.innerText.length - 6)) {
                             console.log(playing, '  -  playing')
-                            if (playing == 1) {
+                            if (playing == 1 && (!(!progressOrNot1 && progressOrNot2))) {
                                 curTrackRow.children[0].children[0].style.background = 'url(\'data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.13%205.1l10.5%206.25a.75.75%200%20010%201.29l-10.5%206.25A.75.75%200%20017%2018.25V5.75a.75.75%200%20011.13-.64z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E\') center / 24px no-repeat, #fff'
                                 document.querySelector('.footer_play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.13%205.1l10.5%206.25a.75.75%200%20010%201.29l-10.5%206.25A.75.75%200%20017%2018.25V5.75a.75.75%200%20011.13-.64z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat, #fff"
                                 document.querySelector('.popup_player_content .play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%23000%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22id-play_48__Page-2%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22id-play_48__play_48%22%3E%3Cpath%20id%3D%22id-play_48__Rectangle-737%22%20d%3D%22M0%200h48v48H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14.4%208.76l24.02%2013.85a1.6%201.6%200%20010%202.78L14.4%2039.24a1.6%201.6%200%2001-2.4-1.39v-27.7a1.6%201.6%200%20012.4-1.39z%22%20id%3D%22id-play_48__Mask%22%20fill%3D%22currentColor%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 48px no-repeat"
@@ -372,7 +369,7 @@
                                     if (Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) <= 100) {
                                         curTrackRow.querySelector('.progress_transition').style.left = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
                                         curTrackRow.querySelector('.progress_played').style.width = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
-                                        curTrackRow.querySelector('.duration').textContent = `-${secToMin(Math.floor(hls.media.duration - (e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration))}`
+                                        curTrackRow.querySelector('.duration').textContent = `-${secToMin(1+hls.media.duration - Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration))}`
                                     }
                                     console.log(Math.floor(hls.media.duration - (e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration))
                                 }
@@ -380,7 +377,7 @@
                                     if (Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) <= 100) {
                                         document.querySelector('.popup_player_content .progress_transition_circle').style.left = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
                                         document.querySelector('.popup_player_content .progress_played').style.width = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
-                                        document.querySelector('.popup_player_content .duration_end').textContent = `-${secToMin(Math.floor(hls.media.duration - (e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * hls.media.duration))}`
+                                        document.querySelector('.popup_player_content .duration_end').textContent = `-${secToMin(1+hls.media.duration - Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * hls.media.duration))}`
                                     }
                                 }
                                 if (inProgressBar3 == 1) {
@@ -492,7 +489,6 @@
                             }, 100)
                         }
                     }
-                }
                 }
             })
         }
