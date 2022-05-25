@@ -393,7 +393,7 @@ input::placeholder,
     border-bottom: none;
     padding-bottom: 0px;
 }
-.audio:hover .play{
+.audio:hover .play, .audio:hover .pause{
     opacity: 1;
 }
 .audio:hover{
@@ -450,9 +450,6 @@ input::placeholder,
     background: #ebedf0;
 }
 
-.volume_wrap .volume_value{
-    width: 50%;
-}
 .progress_wrap .progress_played,
 .progress_wrap .progress_buffered,
 .volume_wrap .volume_value{
@@ -2041,8 +2038,4 @@ input[type="text"]{
 
 .audio .author_rightfromtitle{
     padding-right: 0;
-}
-
-.volume_transition{
-    left: 50%;
 }
