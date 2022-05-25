@@ -2039,3 +2039,7 @@ input[type="text"]{
 .audio .author_rightfromtitle{
     padding-right: 0;
 }
+
+.audios .progress_transition, .audios .progress_played{
+
+}

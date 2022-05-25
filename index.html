@@ -142,7 +142,7 @@
                 `
             })
             let inputDataTrack
-            if(localStorage.getItem('curTrack')) {
+            if (localStorage.getItem('curTrack')) {
                 inputDataTrack = JSON.parse(localStorage.getItem('curTrack'))
                 document.querySelector('.footer_player .audio_title').textContent = inputDataTrack.title
                 document.querySelector('.footer_player .audio_author').textContent = inputDataTrack.artist
@@ -179,7 +179,6 @@
                     document.querySelector('.repeat').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%232688eb%22%20fill%3D%22none%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22currentColor%22%3E%3Cpath%20clip-rule%3D%22evenodd%22%20d%3D%22m12.4754%209.13192c.2663.1638.4285.45396.4285.76649v4.20209c0%20.4971-.4031.9-.9003.9-.4973%200-.9004-.4029-.9004-.9v-2.7396c-.4428.2197-.9807.0412-1.20382-.4007-.22408-.4437-.04589-.98497.39802-1.20897l1.3004-.65625c.2791-.14084.6114-.12686.8776.03694z%22%20fill-rule%3D%22evenodd%22%2F%3E%3Cpath%20d%3D%22m2.00464%2012c0-3.25844%202.64246-5.89996%205.9021-5.89996h10.02596l-.5638-.56364c-.3516-.35148-.3516-.92132%200-1.2728.3516-.35147.9216-.35147%201.2732%200l2.1008%202.09998c.3516.35147.3516.92132%200%201.27279l-2.1008%202.09998c-.3516.35145-.9216.35145-1.2732%200-.3516-.35147-.3516-.92132%200-1.2728l.5637-.56351h-10.02586c-2.26517%200-4.10146%201.83563-4.10146%204.09996v.0967c0%20.4971-.40309.9-.90032.9s-.90032-.4029-.90032-.9z%22%2F%3E%3Cpath%20d%3D%22m21.1043%2011.0033c.4973%200%20.9003.403.9003.9v.0967c0%203.2585-2.6424%205.9-5.9021%205.9h-10.02836l.56372.5636c.35159.3514.35159.9213%200%201.2727-.3516.3515-.92165.3515-1.27325%200l-2.10072-2.0999c-.3516-.3515-.3516-.9213%200-1.2728l2.10072-2.1c.3516-.3515.92165-.3515%201.27325%200%20.35159.3515.35159.9213%200%201.2728l-.56384.5636h10.02848c2.2652%200%204.1015-1.8356%204.1015-4.1v-.0967c0-.497.4031-.9.9003-.9z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat"
                 }
             }
-
 
 
             document.onkeydown = function iziz(iz) {
@@ -280,53 +279,80 @@
                             console.log(curTrack)
                             let inProgressBar1 = 0
                             let inProgressBar2 = 0
+                            let inProgressBar3 = 0
                             let dragProgress1 = (e) => {
                                 console.log(e)
-                                hls.media.currentTime = e.offsetX / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration
+                                console.log(Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration))
+                                hls.media.currentTime = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration)
                             }
                             let dragProgress2 = (e) => {
                                 console.log(e)
-                                hls.media.currentTime = e.offsetX / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * hls.media.duration
+                                console.log(Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * hls.media.duration))
+                                hls.media.currentTime = Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * hls.media.duration)
                             }
                             let dragProgress3 = (e) => {
                                 console.log(e)
-                                hls.media.volume = e.offsetX / curTrackRow.querySelector('.volume_display').offsetWidth
+                                console.log(Math.floor((e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth))
+                                hls.media.volume = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
                             }
                             curTrackRow.querySelector('.progress_wrap').addEventListener('mousedown', (e) => {
                                 inProgressBar1 = 1
-                                dragProgress1(e)
                             })
                             document.querySelector('.popup_player_content .progress_wrap').addEventListener('mousedown', (e) => {
-                                inProgressBar1 = 1
-                                dragProgress2(e)
+                                inProgressBar2 = 1
                             })
                             curTrackRow.querySelector('.volume_wrap').addEventListener('mousedown', (e) => {
-                                inProgressBar2 = 1
-                                console.log('asfasfas')
-                                dragProgress3(e)
+                                inProgressBar3 = 1
                             })
                             window.addEventListener('mousemove', (e) => {
                                 if (inProgressBar1 == 1) {
-                                    dragProgress1(e)
-                                    dragProgress2(e)
-                                    dragProgress3(e)
+                                    console.log(Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%')
+                                    if (Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) <= 100) {
+                                        curTrackRow.querySelector('.progress_transition').style.left = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
+                                        curTrackRow.querySelector('.progress_played').style.width = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
+                                    }
                                 }
                                 if (inProgressBar2 == 1) {
-                                    dragProgress3(e)
+                                    if (Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) <= 100) {
+                                        document.querySelector('.popup_player_content .progress_transition_circle').style.left = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
+                                        document.querySelector('.popup_player_content .progress_played').style.width = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
+                                    }
+                                }
+                                if (inProgressBar3 == 1) {
+                                    document.querySelectorAll('.volume_value').forEach((el) => {
+                                        if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                            el.style.width = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                                    })
+                                    document.querySelectorAll('.volume_transition').forEach((el) => {
+                                        if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                            el.style.left = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                                    })
                                 }
                             })
-                            window.addEventListener('mouseup', () => {
+                            window.addEventListener('mouseup', (e) => {
+                                console.log('beg')
+                                if (inProgressBar1 == 1) {
+                                    dragProgress1(e)
+                                }
+                                if (inProgressBar2 == 1){
+                                    dragProgress2(e)
+                                }
+                                if (inProgressBar3 == 1) {
+                                    dragProgress3(e)
+                                }
                                 inProgressBar1 = 0
                                 inProgressBar2 = 0
+                                inProgressBar3 = 0
+                                console.log('0 0')
                             })
                             intCurTime = setInterval(() => {
                                 let lenOfBuf = hls.media.buffered.end(hls.media.buffered.length - 1)
-                                curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                document.querySelectorAll('.volume_value').forEach((el) => el.style.width = hls.media.volume * 100 + '%')
-                                document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = hls.media.volume * 100 + '%')
-                                document.querySelector('.popup_player_content .progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                document.querySelector('.popup_player_content .progress_transition_circle').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                if (!inProgressBar1)curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                if (!inProgressBar1)curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                if (!inProgressBar3)document.querySelectorAll('.volume_value').forEach((el) => el.style.width = hls.media.volume * 100 + '%')
+                                if (!inProgressBar3)document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = hls.media.volume * 100 + '%')
+                                if (!inProgressBar2)document.querySelector('.popup_player_content .progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                if (!inProgressBar2)document.querySelector('.popup_player_content .progress_transition_circle').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
                                 curTrackRow.querySelector('.progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
                                 document.querySelector('.popup_player_content .progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
                                 let curFormatTime
@@ -360,22 +386,19 @@
                                     })
                                     document.querySelector('.popup_player_content .play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%23000%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22id-play_48__Page-2%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22id-play_48__play_48%22%3E%3Cpath%20id%3D%22id-play_48__Rectangle-737%22%20d%3D%22M0%200h48v48H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14.4%208.76l24.02%2013.85a1.6%201.6%200%20010%202.78L14.4%2039.24a1.6%201.6%200%2001-2.4-1.39v-27.7a1.6%201.6%200%20012.4-1.39z%22%20id%3D%22id-play_48__Mask%22%20fill%3D%22currentColor%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 48px no-repeat"
                                     document.querySelector('.footer_play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.13%205.1l10.5%206.25a.75.75%200%20010%201.29l-10.5%206.25A.75.75%200%20017%2018.25V5.75a.75.75%200%20011.13-.64z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat, #fff"
-                                    if(shuffle == 1){
-                                        document.querySelectorAll('.audio')[Math.floor(Math.random()*document.querySelectorAll('.audio').length)].children[0].click()
-                                    }
-                                    else {
-                                        if(repeat == 1){
+                                    if (shuffle == 1) {
+                                        document.querySelectorAll('.audio')[Math.floor(Math.random() * document.querySelectorAll('.audio').length)].children[0].click()
+                                    } else {
+                                        if (repeat == 1) {
                                             if (curTrackRow.nextSibling.nextSibling)
                                                 curTrackRow.nextSibling.nextSibling.children[0].click()
                                             else {
                                                 document.querySelector('.audios').children[0].children[0].click()
                                             }
-                                        }
-                                        else {
-                                            if(repeat == 2){
+                                        } else {
+                                            if (repeat == 2) {
                                                 curTrackRow.children[0].click()
-                                            }
-                                            else {
+                                            } else {
                                                 if (curTrackRow.nextSibling.nextSibling)
                                                     curTrackRow.nextSibling.nextSibling.children[0].click()
                                                 else {
@@ -445,10 +468,9 @@
             }
 
             document.querySelector('.buttons_wrap .prev').onclick = () => {
-                if(shuffle == 1){
-                    document.querySelectorAll('.audio')[Math.floor(Math.random()*document.querySelectorAll('.audio').length)].children[0].click()
-                }
-                else {
+                if (shuffle == 1) {
+                    document.querySelectorAll('.audio')[Math.floor(Math.random() * document.querySelectorAll('.audio').length)].children[0].click()
+                } else {
                     if (curTrackRow.previousSibling.previousSibling)
                         curTrackRow.previousSibling.previousSibling.children[0].click()
                     else {
@@ -459,10 +481,9 @@
             }
 
             document.querySelector('.buttons_wrap .next').onclick = () => {
-                if(shuffle == 1){
-                    document.querySelectorAll('.audio')[Math.floor(Math.random()*document.querySelectorAll('.audio').length)].children[0].click()
-                }
-                else {
+                if (shuffle == 1) {
+                    document.querySelectorAll('.audio')[Math.floor(Math.random() * document.querySelectorAll('.audio').length)].children[0].click()
+                } else {
                     if (curTrackRow.nextSibling.nextSibling)
                         curTrackRow.nextSibling.nextSibling.children[0].click()
                     else {
@@ -477,12 +498,11 @@
             }
 
             document.querySelector('.shuffle').onclick = () => {
-                if(shuffle == 0) {
+                if (shuffle == 0) {
                     document.querySelector('.shuffle').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%232688eb%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M19.5%205.26a.5.5%200%2001.3.1l2.93%202.24a.5.5%200%20010%20.8l-2.92%202.23a.5.5%200%2001-.81-.4V9h-3.5c-.9%200-1.7.76-3.28%203%201.57%202.24%202.39%203%203.28%203H19v-1.23a.5.5%200%2001.8-.4l2.93%202.23a.5.5%200%20010%20.8l-2.92%202.23a.5.5%200%2001-.81-.4V17h-3.5c-1.7%200-2.75-.84-4.5-3.26C9.25%2016.16%208.2%2017%206.5%2017H4a1%201%200%20010-2h2.5c.9%200%201.7-.76%203.28-3C8.21%209.76%207.4%209%206.5%209H4a1%201%200%20110-2h2.5c1.7%200%202.75.84%204.5%203.26C12.75%207.84%2013.8%207%2015.5%207H19V5.77c0-.28.22-.5.5-.5z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat"
                     shuffle = 1
                     localStorage.setItem('shuffle', 1)
-                }
-                else{
+                } else {
                     document.querySelector('.shuffle').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%2399a2ad%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M19.5%205.26a.5.5%200%2001.3.1l2.93%202.24a.5.5%200%20010%20.8l-2.92%202.23a.5.5%200%2001-.81-.4V9h-3.5c-.9%200-1.7.76-3.28%203%201.57%202.24%202.39%203%203.28%203H19v-1.23a.5.5%200%2001.8-.4l2.93%202.23a.5.5%200%20010%20.8l-2.92%202.23a.5.5%200%2001-.81-.4V17h-3.5c-1.7%200-2.75-.84-4.5-3.26C9.25%2016.16%208.2%2017%206.5%2017H4a1%201%200%20010-2h2.5c.9%200%201.7-.76%203.28-3C8.21%209.76%207.4%209%206.5%209H4a1%201%200%20110-2h2.5c1.7%200%202.75.84%204.5%203.26C12.75%207.84%2013.8%207%2015.5%207H19V5.77c0-.28.22-.5.5-.5z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat"
                     shuffle = 0
                     localStorage.setItem('shuffle', 0)
@@ -491,17 +511,15 @@
 
             document.querySelector('.repeat').onclick = () => {
 
-                if(repeat == 0) {
+                if (repeat == 0) {
                     document.querySelector('.repeat').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%232688eb%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M20.5%2012a1%201%200%20011%201c0%203.05-1.95%205-5%205H9.02v1.75c0%20.26-.14.35-.33.24l-.06-.04-3.47-2.65c-.21-.16-.22-.43%200-.6l3.47-2.65c.2-.16.39-.08.39.2V16h7.48c1.88%200%202.92-.98%203-2.8V13a1%201%200%20011-1zm-5.1-7.95l3.46%202.65c.21.17.2.44%200%20.6l-3.47%202.65c-.21.17-.39.08-.39-.2V8H7.5c-1.88%200-2.92.98-3%202.8v.2a1%201%200%2001-2%200c0-3.05%201.95-5%205-5H15V4.25c0-.28.18-.36.4-.2z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat"
                     repeat = 1
                     localStorage.setItem('repeat', 1)
-                }
-                else if(repeat == 1){
+                } else if (repeat == 1) {
                     document.querySelector('.repeat').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%232688eb%22%20fill%3D%22none%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22currentColor%22%3E%3Cpath%20clip-rule%3D%22evenodd%22%20d%3D%22m12.4754%209.13192c.2663.1638.4285.45396.4285.76649v4.20209c0%20.4971-.4031.9-.9003.9-.4973%200-.9004-.4029-.9004-.9v-2.7396c-.4428.2197-.9807.0412-1.20382-.4007-.22408-.4437-.04589-.98497.39802-1.20897l1.3004-.65625c.2791-.14084.6114-.12686.8776.03694z%22%20fill-rule%3D%22evenodd%22%2F%3E%3Cpath%20d%3D%22m2.00464%2012c0-3.25844%202.64246-5.89996%205.9021-5.89996h10.02596l-.5638-.56364c-.3516-.35148-.3516-.92132%200-1.2728.3516-.35147.9216-.35147%201.2732%200l2.1008%202.09998c.3516.35147.3516.92132%200%201.27279l-2.1008%202.09998c-.3516.35145-.9216.35145-1.2732%200-.3516-.35147-.3516-.92132%200-1.2728l.5637-.56351h-10.02586c-2.26517%200-4.10146%201.83563-4.10146%204.09996v.0967c0%20.4971-.40309.9-.90032.9s-.90032-.4029-.90032-.9z%22%2F%3E%3Cpath%20d%3D%22m21.1043%2011.0033c.4973%200%20.9003.403.9003.9v.0967c0%203.2585-2.6424%205.9-5.9021%205.9h-10.02836l.56372.5636c.35159.3514.35159.9213%200%201.2727-.3516.3515-.92165.3515-1.27325%200l-2.10072-2.0999c-.3516-.3515-.3516-.9213%200-1.2728l2.10072-2.1c.3516-.3515.92165-.3515%201.27325%200%20.35159.3515.35159.9213%200%201.2728l-.56384.5636h10.02848c2.2652%200%204.1015-1.8356%204.1015-4.1v-.0967c0-.497.4031-.9.9003-.9z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat"
                     repeat = 2
                     localStorage.setItem('repeat', 2)
-                }
-                else if(repeat == 2){
+                } else if (repeat == 2) {
                     document.querySelector('.repeat').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%2399a2ad%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M20.5%2012a1%201%200%20011%201c0%203.05-1.95%205-5%205H9.02v1.75c0%20.26-.14.35-.33.24l-.06-.04-3.47-2.65c-.21-.16-.22-.43%200-.6l3.47-2.65c.2-.16.39-.08.39.2V16h7.48c1.88%200%202.92-.98%203-2.8V13a1%201%200%20011-1zm-5.1-7.95l3.46%202.65c.21.17.2.44%200%20.6l-3.47%202.65c-.21.17-.39.08-.39-.2V8H7.5c-1.88%200-2.92.98-3%202.8v.2a1%201%200%2001-2%200c0-3.05%201.95-5%205-5H15V4.25c0-.28.18-.36.4-.2z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat"
                     repeat = 0
                     localStorage.setItem('repeat', 0)
