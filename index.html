@@ -429,6 +429,7 @@
                                 if (hls.media.ended) {
                                     document.querySelector('.wrapper').click()
                                     clearInterval(intCurTime)
+                                    document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
                                     document.querySelectorAll('.progress_played').forEach((el) => {
                                         el.style.width = 0
                                     })
@@ -549,6 +550,7 @@
             }
         }
         document.querySelector('.popup_player_content .progress_transition_circle').style.left = '0%'
+        document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
     }
 
     document.querySelector('.buttons_wrap .next').onclick = () => {
@@ -562,6 +564,7 @@
             }
         }
         document.querySelector('.popup_player_content .progress_transition_circle').style.left = '0%'
+        document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
     }
 
     document.querySelector('.buttons_wrap .play').onclick = () => {

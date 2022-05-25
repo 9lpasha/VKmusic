@@ -503,6 +503,11 @@ input::placeholder,
     background: #fff;
     border-top: 1px solid #ededed;
 }
+@media (max-width: 750px) {
+    .footer_player{
+        width: 100%;
+    }
+}
 .footer_player .audio_info{
     text-align: center;
     padding: 8px 0;
@@ -572,6 +577,13 @@ input::placeholder,
     margin-left: -180px;
     word-break: break-word;
     background: #fff;
+}
+@media (max-width: 380px) {
+    .popup_player_content{
+        width: calc(100% - 40px);
+        margin-left: 0;
+        left: 0;
+    }
 }
 .popup_player_content .cover{
     width: 46px;
