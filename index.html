@@ -269,6 +269,7 @@
                             curTrack = curTrackRow.innerText
                             curTrackId = curTrackRow.querySelector('.id_track').innerText
                             localStorage.setItem('curTrack', JSON.stringify(myObj.filter((el) => el.id == curTrackId)[0]))
+                            audio.title = JSON.parse(localStorage.getItem('curTrack')).title
                             curTrackRow.querySelector('.player_wrapper').style.display = 'flex'
                             document.querySelector('.footer_player .audio_title').textContent = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[0]
                             document.querySelector('.footer_player .audio_author').textContent = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[1]
