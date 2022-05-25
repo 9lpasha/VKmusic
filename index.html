@@ -149,6 +149,7 @@
                 document.querySelector('.popup_player_content .author').textContent = inputDataTrack.artist
                 document.querySelector('.popup_player_content .cover').style.background = `url('${inputDataTrack.album.thumb.photo_68}') center / cover no-repeat`
                 document.querySelector('.popup_player_content .duration_end').textContent = secToMin(inputDataTrack.duration)
+                document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
                 curTrackRow = [...document.querySelectorAll('.audio')].filter((el) => el.querySelector('.id_track').innerText == inputDataTrack.id)[0]
                 document.querySelector('audio').volume = localStorage.getItem('volume')
                 curTrackRow.querySelectorAll('.audio .author').forEach((el) => {
@@ -187,12 +188,12 @@
             };
 
 
-            document.querySelectorAll('.cover').forEach((el) => {
+            document.querySelectorAll('.audio').forEach((el) => {
                 el.onclick = (e) => {
-                    if (e.target.classList.contains('play'))
-                        curTrackRow = e.target.parentNode.parentNode
-                    else
-                        curTrackRow = e.target.parentNode
+                    let u = e.target
+                    while (!u.classList.contains('audio'))
+                        u = u.parentNode
+                    curTrackRow = u
                     console.log(curTrackRow)
                     if (curTrackRow.querySelector('.src_track')) {
                         if (curTrack == curTrackRow.innerText) {
@@ -432,6 +433,7 @@
                         document.querySelectorAll('.audio')[document.querySelectorAll('.audio').length - 1].children[0].click()
                     }
                 }
+                document.querySelector('.popup_player_content .progress_transition_circle').style.left = '0%'
             }
 
             document.querySelector('.buttons_wrap .next').onclick = () => {
@@ -445,6 +447,7 @@
                         document.querySelectorAll('.audio')[0].children[0].click()
                     }
                 }
+                document.querySelector('.popup_player_content .progress_transition_circle').style.left = '0%'
             }
 
             document.querySelector('.buttons_wrap .play').onclick = () => {
@@ -465,6 +468,7 @@
             }
 
             document.querySelector('.repeat').onclick = () => {
+
                 if(repeat == 0) {
                     document.querySelector('.repeat').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%232688eb%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M20.5%2012a1%201%200%20011%201c0%203.05-1.95%205-5%205H9.02v1.75c0%20.26-.14.35-.33.24l-.06-.04-3.47-2.65c-.21-.16-.22-.43%200-.6l3.47-2.65c.2-.16.39-.08.39.2V16h7.48c1.88%200%202.92-.98%203-2.8V13a1%201%200%20011-1zm-5.1-7.95l3.46%202.65c.21.17.2.44%200%20.6l-3.47%202.65c-.21.17-.39.08-.39-.2V8H7.5c-1.88%200-2.92.98-3%202.8v.2a1%201%200%2001-2%200c0-3.05%201.95-5%205-5H15V4.25c0-.28.18-.36.4-.2z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat"
                     repeat = 1
