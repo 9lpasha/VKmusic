@@ -140,7 +140,9 @@
         </div>
                 `
             })
-            let inputDataTrack = JSON.parse(localStorage.getItem('curTrack'))
+            let inputDataTrack
+            if(localStorage.getItem('curTrack'))
+                inputDataTrack = JSON.parse(localStorage.getItem('curTrack'))
             document.querySelector('.footer_player .audio_title').textContent = inputDataTrack.title
             document.querySelector('.footer_player .audio_author').textContent = inputDataTrack.artist
             document.querySelector('.popup_player_content .title').textContent = inputDataTrack.title
