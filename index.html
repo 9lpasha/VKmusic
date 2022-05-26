@@ -285,9 +285,7 @@
                     console.log(curTrackRow)
                     console.log(curTrack)
                     if (!withinBoundaries1 && !withinBoundaries2) {
-                        myObj.forEach((el, i) => {
-                            document.querySelectorAll('.audio')[i].querySelector('.duration').innerText = `${secToMin(el.duration)}`
-                        })
+
                         if (curTrack && curTrack.substr(0, curTrack.length - 6) == curTrackRow.innerText.substr(0, curTrackRow.innerText.length - 6)) {
                             console.log(playing, '  -  playing')
                             if (playing == 1 && (!(!progressOrNot1 && progressOrNot2))) {
@@ -304,6 +302,9 @@
                                 playing = 1
                             }
                         } else {
+                            myObj.forEach((el, i) => {
+                                document.querySelectorAll('.audio')[i].querySelector('.duration').innerText = `${secToMin(el.duration)}`
+                            })
                             if (localStorage.getItem('volume')) {
                                 curTrackRow.querySelectorAll('.volume_transition').forEach((el) => el.style.left = localStorage.getItem('volume') * 100 + '%')
                                 curTrackRow.querySelectorAll('.volume_value').forEach((el) => el.style.width = localStorage.getItem('volume') * 100 + '%')
@@ -520,83 +521,85 @@
                                 console.log('0 0')
                             })
                             intCurTime = setInterval(() => {
-                                if (hls.media.currentTime > 0) {
-                                    curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
-                                    document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
-                                }
-                                if (secToMin(hls.media.duration - Math.floor(hls.media.currentTime))) {
-                                    if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) document.querySelector('.popup_player_content .duration_end').textContent = `-${secToMin(hls.media.duration - Math.floor(hls.media.currentTime))}`
-                                    if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) curTrackRow.querySelector('.duration').textContent = `${secToMin(Math.floor(hls.media.currentTime))}`
-                                }
-                                let lenOfBuf = hls.media.buffered.end(hls.media.buffered.length - 1)
-                                if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                if (!inProgressBar3 && hls.media.volume) document.querySelectorAll('.volume_value').forEach((el) => el.style.width = hls.media.volume * 100 + '%')
-                                if (!inProgressBar3 && hls.media.volume) document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = hls.media.volume * 100 + '%')
-                                if (!inProgressBar2) document.querySelector('.popup_player_content .progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                if (!inProgressBar2) document.querySelector('.popup_player_content .progress_transition_circle').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                curTrackRow.querySelector('.progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
-                                document.querySelector('.popup_player_content .progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
-                                let curFormatTime
-                                parseInt(hls.media.currentTime / 60) > 9 ? curFormatTime = parseInt(hls.media.currentTime / 60) + ':' : curFormatTime = parseInt(hls.media.currentTime / 60) + ':'
-                                parseInt(hls.media.currentTime % 60) > 9 ? curFormatTime += parseInt(hls.media.currentTime % 60) : curFormatTime += '0' + parseInt(hls.media.currentTime % 60)
-                                if (!inProgressBar2) document.querySelector('.popup_player_content .duration_start').textContent = curFormatTime
-                                if (hls.media.ended) {
-                                    document.querySelector('.wrapper').click()
-                                    clearInterval(intCurTime)
-                                    document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
-                                    document.querySelectorAll('.progress_played').forEach((el) => {
-                                        el.style.width = 0
-                                    })
-                                    document.querySelectorAll('.progress_transition').forEach((el) => {
-                                        el.style.left = 0
-                                    })
-                                    document.querySelector('.progress_transition_circle').style.left = 0
-                                    document.querySelector('.duration_start').innerText = '0:00'
-                                    document.querySelectorAll('.progress_buffered').forEach((el) => {
-                                        el.style.width = 0
-                                    })
-                                    document.querySelectorAll('.audio .author').forEach((el) => {
-                                        el.style.display = 'block'
-                                    })
-                                    document.querySelectorAll('.audio .author_rightfromtitle').forEach((el) => {
-                                        el.style.display = 'none'
-                                    })
-                                    document.querySelectorAll('.player_wrapper').forEach((el) => {
-                                        el.style.display = 'none'
-                                    })
-                                    document.querySelectorAll('.audio .play').forEach((el) => {
-                                        el.style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.13%205.1l10.5%206.25a.75.75%200%20010%201.29l-10.5%206.25A.75.75%200%20017%2018.25V5.75a.75.75%200%20011.13-.64z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat, #fff"
-                                    })
-                                    document.querySelector('.popup_player_content .play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%23000%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22id-play_48__Page-2%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22id-play_48__play_48%22%3E%3Cpath%20id%3D%22id-play_48__Rectangle-737%22%20d%3D%22M0%200h48v48H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14.4%208.76l24.02%2013.85a1.6%201.6%200%20010%202.78L14.4%2039.24a1.6%201.6%200%2001-2.4-1.39v-27.7a1.6%201.6%200%20012.4-1.39z%22%20id%3D%22id-play_48__Mask%22%20fill%3D%22currentColor%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 48px no-repeat"
-                                    document.querySelector('.footer_play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.13%205.1l10.5%206.25a.75.75%200%20010%201.29l-10.5%206.25A.75.75%200%20017%2018.25V5.75a.75.75%200%20011.13-.64z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat, #fff"
-                                    if (shuffle == 1) {
-                                        document.querySelectorAll('.audio')[Math.floor(Math.random() * document.querySelectorAll('.audio').length)].children[0].click()
-                                    } else {
-                                        if (repeat == 1) {
-                                            if (curTrackRow.nextSibling.nextSibling)
-                                                curTrackRow.nextSibling.nextSibling.children[0].click()
-                                            else {
-                                                document.querySelector('.audios').children[0].children[0].click()
-                                            }
+                                if (!hls.media.paused) {
+                                    if (hls.media.currentTime > 0) {
+                                        curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
+                                        document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
+                                    }
+                                    if (secToMin(hls.media.duration - Math.floor(hls.media.currentTime))) {
+                                        if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) document.querySelector('.popup_player_content .duration_end').textContent = `-${secToMin(hls.media.duration - Math.floor(hls.media.currentTime))}`
+                                        if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) curTrackRow.querySelector('.duration').textContent = `${secToMin(Math.floor(hls.media.currentTime))}`
+                                    }
+                                    let lenOfBuf = hls.media.buffered.end(hls.media.buffered.length - 1)
+                                    if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                    if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                    if (!inProgressBar3 && hls.media.volume) document.querySelectorAll('.volume_value').forEach((el) => el.style.width = hls.media.volume * 100 + '%')
+                                    if (!inProgressBar3 && hls.media.volume) document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = hls.media.volume * 100 + '%')
+                                    if (!inProgressBar2) document.querySelector('.popup_player_content .progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                    if (!inProgressBar2) document.querySelector('.popup_player_content .progress_transition_circle').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                    curTrackRow.querySelector('.progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
+                                    document.querySelector('.popup_player_content .progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
+                                    let curFormatTime
+                                    parseInt(hls.media.currentTime / 60) > 9 ? curFormatTime = parseInt(hls.media.currentTime / 60) + ':' : curFormatTime = parseInt(hls.media.currentTime / 60) + ':'
+                                    parseInt(hls.media.currentTime % 60) > 9 ? curFormatTime += parseInt(hls.media.currentTime % 60) : curFormatTime += '0' + parseInt(hls.media.currentTime % 60)
+                                    if (!inProgressBar2) document.querySelector('.popup_player_content .duration_start').textContent = curFormatTime
+                                    if (hls.media.ended) {
+                                        document.querySelector('.wrapper').click()
+                                        clearInterval(intCurTime)
+                                        document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
+                                        document.querySelectorAll('.progress_played').forEach((el) => {
+                                            el.style.width = 0
+                                        })
+                                        document.querySelectorAll('.progress_transition').forEach((el) => {
+                                            el.style.left = 0
+                                        })
+                                        document.querySelector('.progress_transition_circle').style.left = 0
+                                        document.querySelector('.duration_start').innerText = '0:00'
+                                        document.querySelectorAll('.progress_buffered').forEach((el) => {
+                                            el.style.width = 0
+                                        })
+                                        document.querySelectorAll('.audio .author').forEach((el) => {
+                                            el.style.display = 'block'
+                                        })
+                                        document.querySelectorAll('.audio .author_rightfromtitle').forEach((el) => {
+                                            el.style.display = 'none'
+                                        })
+                                        document.querySelectorAll('.player_wrapper').forEach((el) => {
+                                            el.style.display = 'none'
+                                        })
+                                        document.querySelectorAll('.audio .play').forEach((el) => {
+                                            el.style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.13%205.1l10.5%206.25a.75.75%200%20010%201.29l-10.5%206.25A.75.75%200%20017%2018.25V5.75a.75.75%200%20011.13-.64z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat, #fff"
+                                        })
+                                        document.querySelector('.popup_player_content .play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%23000%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22id-play_48__Page-2%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22id-play_48__play_48%22%3E%3Cpath%20id%3D%22id-play_48__Rectangle-737%22%20d%3D%22M0%200h48v48H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14.4%208.76l24.02%2013.85a1.6%201.6%200%20010%202.78L14.4%2039.24a1.6%201.6%200%2001-2.4-1.39v-27.7a1.6%201.6%200%20012.4-1.39z%22%20id%3D%22id-play_48__Mask%22%20fill%3D%22currentColor%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 48px no-repeat"
+                                        document.querySelector('.footer_play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.13%205.1l10.5%206.25a.75.75%200%20010%201.29l-10.5%206.25A.75.75%200%20017%2018.25V5.75a.75.75%200%20011.13-.64z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat, #fff"
+                                        if (shuffle == 1) {
+                                            document.querySelectorAll('.audio')[Math.floor(Math.random() * document.querySelectorAll('.audio').length)].children[0].click()
                                         } else {
-                                            if (repeat == 2) {
-                                                curTrackRow.children[0].click()
-                                            } else {
+                                            if (repeat == 1) {
                                                 if (curTrackRow.nextSibling.nextSibling)
                                                     curTrackRow.nextSibling.nextSibling.children[0].click()
                                                 else {
-                                                    localStorage.setItem('curTrack', JSON.stringify(myObj[0]))
-                                                    curTrackRow = document.querySelector('.audios').children[0]
-                                                    let inputDataTrack = JSON.parse(localStorage.getItem('curTrack'))
-                                                    document.querySelector('.footer_player .audio_title').textContent = inputDataTrack.title
-                                                    document.querySelector('.footer_player .audio_author').textContent = inputDataTrack.artist
-                                                    document.querySelector('.popup_player_content .title').textContent = inputDataTrack.title
-                                                    document.querySelector('.popup_player_content .author').textContent = inputDataTrack.artist
-                                                    document.querySelector('.popup_player_content .cover').style.background = `url('${inputDataTrack.album.thumb.photo_68}') center / cover no-repeat`
-                                                    document.querySelector('.popup_player_content .duration_end').textContent = secToMin(Math.floor(inputDataTrack.duration - hls.media.currentTime))
-                                                    console.log(curTrackRow)
-                                                    hls.media.currentTime = 0
+                                                    document.querySelector('.audios').children[0].children[0].click()
+                                                }
+                                            } else {
+                                                if (repeat == 2) {
+                                                    curTrackRow.children[0].click()
+                                                } else {
+                                                    if (curTrackRow.nextSibling.nextSibling)
+                                                        curTrackRow.nextSibling.nextSibling.children[0].click()
+                                                    else {
+                                                        localStorage.setItem('curTrack', JSON.stringify(myObj[0]))
+                                                        curTrackRow = document.querySelector('.audios').children[0]
+                                                        let inputDataTrack = JSON.parse(localStorage.getItem('curTrack'))
+                                                        document.querySelector('.footer_player .audio_title').textContent = inputDataTrack.title
+                                                        document.querySelector('.footer_player .audio_author').textContent = inputDataTrack.artist
+                                                        document.querySelector('.popup_player_content .title').textContent = inputDataTrack.title
+                                                        document.querySelector('.popup_player_content .author').textContent = inputDataTrack.artist
+                                                        document.querySelector('.popup_player_content .cover').style.background = `url('${inputDataTrack.album.thumb.photo_68}') center / cover no-repeat`
+                                                        document.querySelector('.popup_player_content .duration_end').textContent = secToMin(Math.floor(inputDataTrack.duration - hls.media.currentTime))
+                                                        console.log(curTrackRow)
+                                                        hls.media.currentTime = 0
+                                                    }
                                                 }
                                             }
                                         }
