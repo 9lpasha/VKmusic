@@ -158,8 +158,14 @@
                 document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
                 curTrackRow = [...document.querySelectorAll('.audio')].filter((el) => el.querySelector('.id_track').innerText == inputDataTrack.id)[0]
                 //document.querySelector('audio').volume = localStorage.getItem('volume')
-                document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = localStorage.getItem('volume') * 100 + '%')
-                document.querySelectorAll('.volume_value').forEach((el) => el.style.width = localStorage.getItem('volume') * 100 + '%')
+                if (localStorage.getItem('volume')) {
+                    document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = localStorage.getItem('volume') * 100 + '%')
+                    document.querySelectorAll('.volume_value').forEach((el) => el.style.width = localStorage.getItem('volume') * 100 + '%')
+                } else {
+                    document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = 75 + '%')
+                    document.querySelectorAll('.volume_value').forEach((el) => el.style.width = 75 + '%')
+                    localStorage.setItem('volume', 0.75)
+                }
                 curTrackRow.querySelectorAll('.audio .author').forEach((el) => {
                     el.style.display = 'none'
                 })
@@ -182,6 +188,57 @@
                     } else
                         progressOrNot2 = 0
                 }
+
+
+                let inprogressbar
+                let dragrrogress = (e) => {
+                    console.log(e)
+                    let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                    localStorage.setItem('volume', r)
+                }
+                curTrackRow.querySelector('.volume_wrap').addEventListener('mousedown', (e) => {
+                    inprogressbar = 1
+                    document.querySelectorAll('.volume_value').forEach((el) => {
+                        if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                            el.style.width = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                    })
+                    document.querySelectorAll('.volume_transition').forEach((el) => {
+                        if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                            el.style.left = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                    })
+                    progressOrNot1 = 1
+                    let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                    localStorage.setItem('volume', r)
+                })
+                window.addEventListener('mousemove', (e) => {
+                    if (inprogressbar == 1) {
+                        document.querySelectorAll('.volume_value').forEach((el) => {
+                            if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                el.style.width = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                        })
+                        document.querySelectorAll('.volume_transition').forEach((el) => {
+                            if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                el.style.left = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                        })
+                        let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                        if (r < 0) {
+                            localStorage.setItem('volume', 0)
+                        } else if (r > 1) {
+                            localStorage.setItem('volume', 1)
+                        } else {
+                            localStorage.setItem('volume', r)
+                        }
+                    }
+                })
+                window.addEventListener('mouseup', (e) => {
+                    if (inprogressbar == 1) {
+                        dragrrogress(e)
+                    }
+                    inprogressbar = 0
+                    console.log('0 0')
+                })
+
+
                 curTrackRow.querySelectorAll('.audio .author_rightfromtitle').forEach((el) => {
                     el.style.display = 'inline-block'
                 })
@@ -192,9 +249,9 @@
                 document.querySelector('.popup_player_content .progress_transition_circle').style.left = 0 + '%'
                 document.querySelectorAll('.volume_value').forEach((el) => el.style.width = localStorage.getItem('volume') * 100 + '%')
                 document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = localStorage.getItem('volume') * 100 + '%')
-                if(localStorage.getItem('shuffle'))
+                if (localStorage.getItem('shuffle'))
                     shuffle = localStorage.getItem('shuffle')
-                if(localStorage.getItem('repeat'))
+                if (localStorage.getItem('repeat'))
                     repeat = localStorage.getItem('repeat')
                 if (shuffle == 1) {
                     document.querySelector('.shuffle').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%232688eb%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M19.5%205.26a.5.5%200%2001.3.1l2.93%202.24a.5.5%200%20010%20.8l-2.92%202.23a.5.5%200%2001-.81-.4V9h-3.5c-.9%200-1.7.76-3.28%203%201.57%202.24%202.39%203%203.28%203H19v-1.23a.5.5%200%2001.8-.4l2.93%202.23a.5.5%200%20010%20.8l-2.92%202.23a.5.5%200%2001-.81-.4V17h-3.5c-1.7%200-2.75-.84-4.5-3.26C9.25%2016.16%208.2%2017%206.5%2017H4a1%201%200%20010-2h2.5c.9%200%201.7-.76%203.28-3C8.21%209.76%207.4%209%206.5%209H4a1%201%200%20110-2h2.5c1.7%200%202.75.84%204.5%203.26C12.75%207.84%2013.8%207%2015.5%207H19V5.77c0-.28.22-.5.5-.5z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat"
@@ -247,11 +304,10 @@
                                 playing = 1
                             }
                         } else {
-                            if(localStorage.getItem('volume')) {
+                            if (localStorage.getItem('volume')) {
                                 curTrackRow.querySelectorAll('.volume_transition').forEach((el) => el.style.left = localStorage.getItem('volume') * 100 + '%')
                                 curTrackRow.querySelectorAll('.volume_value').forEach((el) => el.style.width = localStorage.getItem('volume') * 100 + '%')
-                            }
-                            else{
+                            } else {
                                 curTrackRow.querySelectorAll('.volume_transition').forEach((el) => el.style.left = 75 + '%')
                                 curTrackRow.querySelectorAll('.volume_value').forEach((el) => el.style.width = 75 + '%')
                             }
@@ -325,7 +381,7 @@
                             document.querySelector('.popup_player_content .title').textContent = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[0]
                             document.querySelector('.popup_player_content .author').textContent = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[1]
                             document.querySelector('.popup_player_content .cover').style.backgroundImage = curTrackRow.querySelector('.audio .cover').style.backgroundImage
-                            document.querySelector('.popup_player_content .duration_end').textContent = '-'+curTrackRow.querySelector('.duration').innerText
+                            document.querySelector('.popup_player_content .duration_end').textContent = '-' + curTrackRow.querySelector('.duration').innerText
                             console.log(curTrack)
                             let inProgressBar1 = 0
                             let inProgressBar2 = 0
@@ -352,7 +408,7 @@
                                 }
                             }
                             curTrackRow.querySelector('.progress_wrap').addEventListener('mousedown', (e) => {
-                                if(hls.media.duration) {
+                                if (hls.media.duration) {
                                     inProgressBar1 = 1
                                     console.log(Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%')
                                     if (Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) <= 100) {
@@ -363,7 +419,7 @@
                                 }
                             })
                             document.querySelector('.popup_player_content .progress_wrap').addEventListener('mousedown', (e) => {
-                                if(hls.media.duration) {
+                                if (hls.media.duration) {
                                     inProgressBar2 = 1
                                     if (Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) <= 100) {
                                         document.querySelector('.popup_player_content .progress_transition_circle').style.left = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
@@ -384,6 +440,7 @@
                                 })
                                 progressOrNot1 = 1
                                 let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                                localStorage.setItem('volume', r)
                                 if (r < 0)
                                     hls.media.volume = 0
                                 else if (r > 1)
@@ -394,7 +451,7 @@
                             })
                             window.addEventListener('mousemove', (e) => {
                                 if (inProgressBar1 == 1) {
-                                    if(hls.media.duration) {
+                                    if (hls.media.duration) {
                                         console.log(Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%')
                                         if (Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) <= 100) {
                                             curTrackRow.querySelector('.progress_transition').style.left = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
@@ -406,7 +463,7 @@
                                     }
                                 }
                                 if (inProgressBar2 == 1) {
-                                    if(hls.media.duration) {
+                                    if (hls.media.duration) {
                                         if (Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) <= 100) {
                                             document.querySelector('.popup_player_content .progress_transition_circle').style.left = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
                                             document.querySelector('.popup_player_content .progress_played').style.width = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
@@ -433,12 +490,15 @@
                                             el.style.left = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
                                     })
                                     let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
-                                    if (r < 0)
+                                    if (r < 0) {
                                         hls.media.volume = 0
-                                    else if (r > 1)
+                                        localStorage.setItem('volume', 0)
+                                    } else if (r > 1) {
                                         hls.media.volume = 1
-                                    else {
+                                        localStorage.setItem('volume', 1)
+                                    } else {
                                         hls.media.volume = r
+                                        localStorage.setItem('volume', r)
                                     }
                                 }
                             })
@@ -460,7 +520,7 @@
                                 console.log('0 0')
                             })
                             intCurTime = setInterval(() => {
-                                if(hls.media.currentTime>0){
+                                if (hls.media.currentTime > 0) {
                                     curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
                                     document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
                                 }
@@ -469,10 +529,10 @@
                                     if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) curTrackRow.querySelector('.duration').textContent = `${secToMin(Math.floor(hls.media.currentTime))}`
                                 }
                                 let lenOfBuf = hls.media.buffered.end(hls.media.buffered.length - 1)
-                                if (!inProgressBar1&&!inProgressBar2) curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                if (!inProgressBar1&&!inProgressBar2) curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                if (!inProgressBar3&&hls.media.volume) document.querySelectorAll('.volume_value').forEach((el) => el.style.width = hls.media.volume * 100 + '%')
-                                if (!inProgressBar3&&hls.media.volume) document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = hls.media.volume * 100 + '%')
+                                if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                if (!inProgressBar3 && hls.media.volume) document.querySelectorAll('.volume_value').forEach((el) => el.style.width = hls.media.volume * 100 + '%')
+                                if (!inProgressBar3 && hls.media.volume) document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = hls.media.volume * 100 + '%')
                                 if (!inProgressBar2) document.querySelector('.popup_player_content .progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
                                 if (!inProgressBar2) document.querySelector('.popup_player_content .progress_transition_circle').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
                                 curTrackRow.querySelector('.progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
@@ -480,7 +540,7 @@
                                 let curFormatTime
                                 parseInt(hls.media.currentTime / 60) > 9 ? curFormatTime = parseInt(hls.media.currentTime / 60) + ':' : curFormatTime = parseInt(hls.media.currentTime / 60) + ':'
                                 parseInt(hls.media.currentTime % 60) > 9 ? curFormatTime += parseInt(hls.media.currentTime % 60) : curFormatTime += '0' + parseInt(hls.media.currentTime % 60)
-                                if (!inProgressBar2)document.querySelector('.popup_player_content .duration_start').textContent = curFormatTime
+                                if (!inProgressBar2) document.querySelector('.popup_player_content .duration_start').textContent = curFormatTime
                                 if (hls.media.ended) {
                                     document.querySelector('.wrapper').click()
                                     clearInterval(intCurTime)
