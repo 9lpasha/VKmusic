@@ -194,7 +194,13 @@
                 let dragrrogress = (e) => {
                     console.log(e)
                     let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
-                    localStorage.setItem('volume', r)
+                    if (r < 0) {
+                        localStorage.setItem('volume', 0)
+                    } else if (r > 1) {
+                        localStorage.setItem('volume', 1)
+                    } else {
+                        localStorage.setItem('volume', r)
+                    }
                 }
                 curTrackRow.querySelector('.volume_wrap').addEventListener('mousedown', (e) => {
                     inprogressbar = 1
