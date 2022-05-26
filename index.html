@@ -413,9 +413,7 @@
                                 }
                             })
                             window.addEventListener('mouseup', (e) => {
-                                inProgressBar1 = 0
-                                inProgressBar2 = 0
-                                inProgressBar3 = 0
+
                                 console.log('beg')
                                 if (inProgressBar1 == 1) {
                                     dragProgress1(e)
@@ -426,7 +424,9 @@
                                 if (inProgressBar3 == 1) {
                                     dragProgress3(e)
                                 }
-
+                                inProgressBar1 = 0
+                                inProgressBar2 = 0
+                                inProgressBar3 = 0
                                 console.log('0 0')
                             })
                             intCurTime = setInterval(() => {
