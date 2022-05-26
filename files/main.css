@@ -2056,3 +2056,26 @@ input[type="text"]{
     background: #2688eb linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
     background-size:1rem 1rem
 }
+
+.podgruzka{
+    animation: slider_loading_animation-ltr 300ms linear infinite;
+
+    transition: width 600ms ease;
+}
+
+@keyframes slider_loading_animation-ltr {
+    0% {
+        background-position:0 0
+    }
+    to {
+        background-position:9px 0
+    }
+}
+@keyframes slider_loading_animation-rtl {
+    0% {
+        background-position:100% 0
+    }
+    to {
+        background-position:9px 0
+    }
+}
