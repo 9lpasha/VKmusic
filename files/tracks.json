@@ -110,28 +110,6 @@
     }
   },
   {
-    "id": 106500814,
-    "owner_id": -2001500814,
-    "artist": "Jakomo, A.V.G",
-    "title": "Платина",
-    "duration": 103,
-    "is_explicit": true,
-    "url": "https://85.193.91.101/file.php?audio=-2001500814_106500814&action=play",
-    "album": {
-      "thumb": {
-        "width": 300,
-        "height": 300,
-        "photo_34": "https://sun1-88.userapi.com/impf/YH7Yf-oNvTTG_teiLeTRcXJ7vqeO3U19EwOSgQ/HHkegZxxQVg.jpg?size=34x0&quality=90&sign=e880d818d11a3c4af876f40415e5d7be&c_uniq_tag=JZLfPKea3lKeui3t8UO7nmrVpOlTgXwz25OgL-tIsoE",
-        "photo_68": "https://sun1-88.userapi.com/impf/YH7Yf-oNvTTG_teiLeTRcXJ7vqeO3U19EwOSgQ/HHkegZxxQVg.jpg?size=68x0&quality=90&sign=a4e0ef5cd8f93f02e46f2e5f45452a83&c_uniq_tag=JP4t_cJj8ej65fM_T2lUtG6JFsaN-D7E2LenvAW2TNA",
-        "photo_135": "https://sun1-88.userapi.com/impf/YH7Yf-oNvTTG_teiLeTRcXJ7vqeO3U19EwOSgQ/HHkegZxxQVg.jpg?size=135x0&quality=90&sign=7dcc1eb11ac94a5f019451f513f04f72&c_uniq_tag=GPOQSCHX1F-iwSQNa0pDYhp1Um6afesLOvuvXu-dLdk",
-        "photo_270": "https://sun1-88.userapi.com/impf/YH7Yf-oNvTTG_teiLeTRcXJ7vqeO3U19EwOSgQ/HHkegZxxQVg.jpg?size=270x0&quality=90&sign=2271db7efd2fcd382e093008a8f8f9d7&c_uniq_tag=dhXl_bFDhiGuDtYYM_rfUscpw-FDxNwn_1CsD0rRfFc",
-        "photo_300": "https://sun1-88.userapi.com/impf/YH7Yf-oNvTTG_teiLeTRcXJ7vqeO3U19EwOSgQ/HHkegZxxQVg.jpg?size=300x0&quality=90&sign=1a9a1f709321874e5d46576762a5d093&c_uniq_tag=21MmHYOkYyHk-1fwJL2tW2cPUpT3_buWCrF35WxFxT8",
-        "photo_600": "https://sun1-88.userapi.com/impf/YH7Yf-oNvTTG_teiLeTRcXJ7vqeO3U19EwOSgQ/HHkegZxxQVg.jpg?size=600x0&quality=90&sign=90e7571c153628a011a499661bac65e4&c_uniq_tag=E5zrD8njsnSjz0EBAsF5luF2Q4VqdC_M_nsMAmaEUzQ",
-        "photo_1200": "https://sun1-88.userapi.com/impf/YH7Yf-oNvTTG_teiLeTRcXJ7vqeO3U19EwOSgQ/HHkegZxxQVg.jpg?size=1184x0&quality=90&sign=5f870b8bf9ad42080b3fd0ddb1cd8cfe&c_uniq_tag=FxHAo06JM7_GQz0byQR9_qB5KIEdtq4cN2_5reYzg-Y"
-      }
-    }
-  },
-  {
     "id": 104690678,
     "owner_id": -2001690678,
     "artist": "Kamazz",
