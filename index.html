@@ -582,6 +582,7 @@
     }
 
     document.querySelector('.buttons_wrap .prev').onclick = () => {
+        playing = 0
         if (shuffle == 1) {
             document.querySelectorAll('.audio')[Math.floor(Math.random() * document.querySelectorAll('.audio').length)].children[0].click()
         } else {
@@ -596,6 +597,7 @@
     }
 
     document.querySelector('.buttons_wrap .next').onclick = () => {
+        playing = 0
         if (shuffle == 1) {
             document.querySelectorAll('.audio')[Math.floor(Math.random() * document.querySelectorAll('.audio').length)].children[0].click()
         } else {
