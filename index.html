@@ -212,9 +212,6 @@
 
             document.querySelectorAll('.audio').forEach((el) => {
                 el.onclick = (e) => {
-                    myObj.forEach((el, i) => {
-                        document.querySelectorAll('.audio')[i].querySelector('.duration').innerText = `${secToMin(el.duration)}`
-                    })
                     console.log(playing)
                     const withinBoundaries1 = e.composedPath().includes(el.querySelector('.progress_wrap'));
                     const withinBoundaries2 = e.composedPath().includes(el.querySelector('.volume_wrap'));
@@ -225,6 +222,9 @@
                     console.log(curTrackRow)
                     console.log(curTrack)
                     if (!withinBoundaries1 && !withinBoundaries2) {
+                        myObj.forEach((el, i) => {
+                            document.querySelectorAll('.audio')[i].querySelector('.duration').innerText = `${secToMin(el.duration)}`
+                        })
                         if (curTrack && curTrack.substr(0, curTrack.length - 6) == curTrackRow.innerText.substr(0, curTrackRow.innerText.length - 6)) {
                             console.log(playing, '  -  playing')
                             if (playing == 1 && (!(!progressOrNot1 && progressOrNot2))) {
@@ -341,7 +341,7 @@
                                     curTrackRow.querySelector('.progress_transition').style.left = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
                                     curTrackRow.querySelector('.progress_played').style.width = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
                                 }
-                                progressOrNot = 1
+                                progressOrNot1 = 1
                             })
                             document.querySelector('.popup_player_content .progress_wrap').addEventListener('mousedown', (e) => {
                                 inProgressBar2 = 1
@@ -349,7 +349,7 @@
                                     document.querySelector('.popup_player_content .progress_transition_circle').style.left = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
                                     document.querySelector('.popup_player_content .progress_played').style.width = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
                                 }
-                                progressOrNot = 1
+                                progressOrNot1 = 1
                             })
                             curTrackRow.querySelector('.volume_wrap').addEventListener('mousedown', (e) => {
                                 inProgressBar3 = 1
@@ -361,7 +361,7 @@
                                     if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
                                         el.style.left = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
                                 })
-                                progressOrNot = 1
+                                progressOrNot1 = 1
                                 let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
                                 if (r < 0)
                                     hls.media.volume = 0
