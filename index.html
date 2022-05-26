@@ -144,6 +144,7 @@
         </div>
                 `
             })
+            //document.querySelectorAll('div').forEach((el)=>{el.draggable = true})
             let inputDataTrack
             if (localStorage.getItem('curTrack')) {
                 document.querySelector('.footer_player_wrapper').style.display = 'block'
@@ -161,6 +162,7 @@
                     el.style.display = 'none'
                 })
                 window.onmousedown = (e) => {
+                    e.preventDefault()
                     const withinBoundaries1 = e.composedPath().includes(curTrackRow.querySelector('.progress_wrap'));
                     const withinBoundaries2 = e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'));
                     console.log(withinBoundaries1, withinBoundaries2)
