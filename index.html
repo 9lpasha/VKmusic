@@ -341,21 +341,25 @@
                                 }
                             }
                             curTrackRow.querySelector('.progress_wrap').addEventListener('mousedown', (e) => {
-                                inProgressBar1 = 1
-                                console.log(Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%')
-                                if (Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) <= 100) {
-                                    curTrackRow.querySelector('.progress_transition').style.left = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
-                                    curTrackRow.querySelector('.progress_played').style.width = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
+                                if(hls.media.duration) {
+                                    inProgressBar1 = 1
+                                    console.log(Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%')
+                                    if (Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) <= 100) {
+                                        curTrackRow.querySelector('.progress_transition').style.left = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
+                                        curTrackRow.querySelector('.progress_played').style.width = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
+                                    }
+                                    progressOrNot1 = 1
                                 }
-                                progressOrNot1 = 1
                             })
                             document.querySelector('.popup_player_content .progress_wrap').addEventListener('mousedown', (e) => {
-                                inProgressBar2 = 1
-                                if (Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) <= 100) {
-                                    document.querySelector('.popup_player_content .progress_transition_circle').style.left = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
-                                    document.querySelector('.popup_player_content .progress_played').style.width = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
+                                if(hls.media.duration) {
+                                    inProgressBar2 = 1
+                                    if (Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) <= 100) {
+                                        document.querySelector('.popup_player_content .progress_transition_circle').style.left = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
+                                        document.querySelector('.popup_player_content .progress_played').style.width = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
+                                    }
+                                    progressOrNot1 = 1
                                 }
-                                progressOrNot1 = 1
                             })
                             curTrackRow.querySelector('.volume_wrap').addEventListener('mousedown', (e) => {
                                 inProgressBar3 = 1
@@ -379,29 +383,33 @@
                             })
                             window.addEventListener('mousemove', (e) => {
                                 if (inProgressBar1 == 1) {
-                                    console.log(Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%')
-                                    if (Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) <= 100) {
-                                        curTrackRow.querySelector('.progress_transition').style.left = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
-                                        curTrackRow.querySelector('.progress_played').style.width = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
-                                        if(hls.media.currentTime)
-                                        curTrackRow.querySelector('.duration').textContent = `${secToMin(Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration))}`
+                                    if(hls.media.duration) {
+                                        console.log(Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%')
+                                        if (Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) <= 100) {
+                                            curTrackRow.querySelector('.progress_transition').style.left = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
+                                            curTrackRow.querySelector('.progress_played').style.width = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
+                                            if (hls.media.currentTime)
+                                                curTrackRow.querySelector('.duration').textContent = `${secToMin(Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration))}`
+                                        }
+                                        console.log(Math.floor(hls.media.duration - (e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration))
                                     }
-                                    console.log(Math.floor(hls.media.duration - (e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration))
                                 }
                                 if (inProgressBar2 == 1) {
-                                    if (Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) <= 100) {
-                                        document.querySelector('.popup_player_content .progress_transition_circle').style.left = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
-                                        document.querySelector('.popup_player_content .progress_played').style.width = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
-                                        if(hls.media.currentTime) {
-                                            document.querySelector('.popup_player_content .duration_end').textContent = `-${secToMin(1 + hls.media.duration - Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * hls.media.duration))}`
-                                            document.querySelector('.popup_player_content .duration_start').textContent = `${secToMin(Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * hls.media.duration))}`
+                                    if(hls.media.duration) {
+                                        if (Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) <= 100) {
+                                            document.querySelector('.popup_player_content .progress_transition_circle').style.left = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
+                                            document.querySelector('.popup_player_content .progress_played').style.width = (e.clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
+                                            if (hls.media.currentTime) {
+                                                document.querySelector('.popup_player_content .duration_end').textContent = `-${secToMin(1 + hls.media.duration - Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * hls.media.duration))}`
+                                                document.querySelector('.popup_player_content .duration_start').textContent = `${secToMin(Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * hls.media.duration))}`
+                                            }
                                         }
-                                    }
-                                    if (Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) <= 100) {
-                                        curTrackRow.querySelector('.progress_transition').style.left = Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) + '%'
-                                        curTrackRow.querySelector('.progress_played').style.width = Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) + '%'
-                                        if(hls.media.currentTime)
-                                            curTrackRow.querySelector('.duration').textContent = `${secToMin(Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * hls.media.duration))}`
+                                        if (Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) <= 100) {
+                                            curTrackRow.querySelector('.progress_transition').style.left = Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) + '%'
+                                            curTrackRow.querySelector('.progress_played').style.width = Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) + '%'
+                                            if (hls.media.currentTime)
+                                                curTrackRow.querySelector('.duration').textContent = `${secToMin(Math.floor((e.clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * hls.media.duration))}`
+                                        }
                                     }
                                 }
                                 if (inProgressBar3 == 1) {
