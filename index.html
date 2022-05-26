@@ -281,8 +281,6 @@
                                     'manifest loaded, found ' + data.levels.length + ' quality level'
                                 );
                                 if (data.levels.length > num_data_levels) {
-                                    curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
-                                    document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
                                     audio.play()
                                 }
                             })
@@ -428,6 +426,10 @@
                                 console.log('0 0')
                             })
                             intCurTime = setInterval(() => {
+                                if(hls.media.currentTime>0){
+                                    curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
+                                    document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
+                                }
                                 if (secToMin(hls.media.duration - Math.floor(hls.media.currentTime))) {
                                     if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) document.querySelector('.popup_player_content .duration_end').textContent = `-${secToMin(hls.media.duration - Math.floor(hls.media.currentTime))}`
                                     if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) curTrackRow.querySelector('.duration').textContent = `${secToMin(Math.floor(hls.media.currentTime))}`
