@@ -314,7 +314,7 @@
                             document.querySelector('.popup_player_content .title').textContent = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[0]
                             document.querySelector('.popup_player_content .author').textContent = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[1]
                             document.querySelector('.popup_player_content .cover').style.backgroundImage = curTrackRow.querySelector('.audio .cover').style.backgroundImage
-                            document.querySelector('.popup_player_content .duration_end').textContent = curTrackRow.querySelector('.duration').innerText
+                            document.querySelector('.popup_player_content .duration_end').textContent = '-'+curTrackRow.querySelector('.duration').innerText
                             console.log(curTrack)
                             let inProgressBar1 = 0
                             let inProgressBar2 = 0
