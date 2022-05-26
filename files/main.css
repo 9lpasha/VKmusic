@@ -460,6 +460,7 @@ input::placeholder,
 }
 .progress_wrap .progress_buffered{
     background: #95c1ff;
+    transition: width 600ms ease;
 }
 .progress_buffered{
     z-index: 1;
@@ -2059,8 +2060,9 @@ input[type="text"]{
 
 .podgruzka{
     animation: slider_loading_animation-ltr 300ms linear infinite;
-
-    transition: width 600ms ease;
+    transition: width 6000ms ease;
+    -webkit-animation:300ms linear infinite slider_loading_animation-ltr;
+    background-position: 0 0;
 }
 
 @keyframes slider_loading_animation-ltr {
