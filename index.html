@@ -490,6 +490,27 @@
                                     hls.media.volume = r
                                 }
                             }
+                            let dragProgressTouch1 = (e) => {
+                                console.log(e)
+                                let r = Math.floor((e.e.targetTouches[0].clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration)
+                                hls.media.currentTime = r
+                            }
+                            let dragProgressTouch2 = (e) => {
+                                console.log(e)
+                                let r = Math.floor((e.e.targetTouches[0].clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * hls.media.duration)
+                                hls.media.currentTime = r
+                            }
+                            let dragProgressTouch3 = (e) => {
+                                console.log(e)
+                                let r = (e.e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                                if (r < 0)
+                                    hls.media.volume = 0
+                                else if (r > 1)
+                                    hls.media.volume = 1
+                                else {
+                                    hls.media.volume = r
+                                }
+                            }
                             curTrackRow.querySelector('.progress_wrap').addEventListener('mousedown', (e) => {
                                 if (hls.media.duration) {
                                     inProgressBar1 = 1
@@ -700,13 +721,13 @@
 
                                 console.log('beg')
                                 if (inProgressBar1 == 1) {
-                                    dragProgress1(e)
+                                    dragProgressTouch1(e)
                                 }
                                 if (inProgressBar2 == 1) {
-                                    dragProgress2(e)
+                                    dragProgressTouch2(e)
                                 }
                                 if (inProgressBar3 == 1) {
-                                    dragProgress3(e)
+                                    dragProgressTouch3(e)
                                 }
                                 inProgressBar1 = 0
                                 inProgressBar2 = 0
