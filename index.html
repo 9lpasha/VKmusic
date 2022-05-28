@@ -511,6 +511,7 @@
                                     }
                                     progressOrNot1 = 1
                                 }
+
                             })
                             document.querySelector('.popup_player_content .progress_wrap').addEventListener('mousedown', (e) => {
                                 if (hls.media.duration) {
@@ -573,6 +574,7 @@
                                 else {
                                     hls.media.volume = r
                                 }
+                                document.querySelector('.audios').insertBefore(document.createElement('button'), curTrackRow)
                             })
                             window.addEventListener('touchmove', (e) => {
                                 if (inProgressBar1 == 1) {
