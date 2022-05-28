@@ -385,6 +385,8 @@
                                     'manifest loaded, found ' + data.levels.length + ' quality level'
                                 );
                                 if (data.levels.length > num_data_levels) {
+                                    curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
+                                    document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
                                     localStorage.getItem('volume') ? hls.media.volume = localStorage.getItem('volume') : hls.media.volume = 0.75
                                     if(playing == 0)
                                         audio.play()
