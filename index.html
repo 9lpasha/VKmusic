@@ -422,12 +422,13 @@
 
                             // document.title = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[0]+' - '+curTrackRow.querySelector('.audio .info').innerText.split(' - ')[1];
 
+                            curTrackFromLocalStorage = localStorage.getItem('curTrack')
                             navigator.mediaSession.metadata = new MediaMetadata({
-                                title: curTrackRow.querySelector('.audio .info').innerText.split(' - ')[0],
-                                artist: curTrackRow.querySelector('.audio .info').innerText.split(' - ')[1],
+                                title: curTrackFromLocalStorage.title,
+                                artist: curTrackFromLocalStorage.artist,
                                 artwork: [
                                     //Cюда обложки, берет первую 96x96 другие не надо
-                                    {src: 'https://via.placeholder.com/96', sizes: '96x96', type: 'image/png'},
+                                    {src: curTrackFromLocalStorage.album.thumb.photo_68, sizes: '96x96', type: 'image/png'},
                                     // { src: 'https://via.placeholder.com/128', sizes: '128x128', type: 'image/png' },
                                     // { src: 'https://via.placeholder.com/192', sizes: '192x192', type: 'image/png' },
                                     // { src: 'https://via.placeholder.com/256', sizes: '256x256', type: 'image/png' },
@@ -827,10 +828,13 @@
                                 } else {
                                     if (document.querySelector('audio').duration == document.querySelector('audio').currentTime)
                                         curTrackRow.nextSibling.nextSibling.children[0].click()
+                                    let lenOfBuf = hls.media.buffered.end(hls.media.buffered.length - 1)
                                     if (lenOfBuf > 0) {
                                         curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
                                         document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
                                     }
+                                    curTrackRow.querySelector('.progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
+                                    document.querySelector('.popup_player_content .progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
                                 }
                             }, 100)
                         }
