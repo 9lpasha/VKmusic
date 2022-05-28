@@ -420,29 +420,14 @@
                             document.querySelector('.popup_player_content .duration_end').textContent = '-' + curTrackRow.querySelector('.duration').innerText
                             console.log(curTrack)
 
-                            // document.title = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[0]+' - '+curTrackRow.querySelector('.audio .info').innerText.split(' - ')[1];
-
                             curTrackFromLocalStorage = JSON.parse(localStorage.getItem('curTrack'))
                             navigator.mediaSession.metadata = new MediaMetadata({
                                 title: curTrackFromLocalStorage.title,
                                 artist: curTrackFromLocalStorage.artist,
                                 artwork: [
-                                    //Cюда обложки, берет первую 96x96 другие не надо
-                                    {src: curTrackFromLocalStorage.album.thumb.photo_68, sizes: '96x96', type: 'image/png'},
-                                    // { src: 'https://via.placeholder.com/128', sizes: '128x128', type: 'image/png' },
-                                    // { src: 'https://via.placeholder.com/192', sizes: '192x192', type: 'image/png' },
-                                    // { src: 'https://via.placeholder.com/256', sizes: '256x256', type: 'image/png' },
-                                    // { src: 'https://via.placeholder.com/384', sizes: '384x384', type: 'image/png' },
-                                    // { src: 'https://via.placeholder.com/512', sizes: '512x512', type: 'image/png' },
+                                    {src: curTrackFromLocalStorage.album.thumb.photo_68, sizes: '68x68', type: 'image/png'}
                                 ]
                             })
-                            // надо сделать
-
-                            // ['play',          () => { /* ... */ }],
-                            //     ['pause',         () => { /* ... */ }],
-                            //     ['previoustrack', () => { /* ... */ }],
-                            //     ['nexttrack',     () => { /* ... */ }],
-                            //['stop',          () => { /* ... */ }],
 
                             const actionHandlers = [
                                  ['play',          () => {
@@ -487,24 +472,15 @@
                                      document.querySelector('.popup_player_content .progress_transition_circle').style.left = '0%'
                                      document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
                                  }],
-                            //     ['stop',          () => { /* ... */ }],
-                            //     ['seekbackward',  (details) => { /* ... */ }],
-                            //     ['seekforward',   (details) => { /* ... */ }],
-                            //     ['seekto',        (details) => { /* ... */ }],
-                            //     /* Video conferencing actions */
-                            //     ['togglemicrophone', () => { /* ... */ }],
-                            //     ['togglecamera',     () => { /* ... */ }],
-                            //     ['hangup',           () => { /* ... */ }],
                              ];
-                            //
-                             for (const [action, handler] of actionHandlers) {
+
+                            for (const [action, handler] of actionHandlers) {
                                  try {
                                      navigator.mediaSession.setActionHandler(action, handler);
                                  } catch (error) {
                                      console.log(`The media session action "${action}" is not supported yet.`);
                                  }
-                             }
-
+                            }
 
                             let inProgressBar1 = 0
                             let inProgressBar2 = 0
