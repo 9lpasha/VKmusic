@@ -87,14 +87,13 @@
 </div>
 <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         const isTouch = () => 'ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch || navigator.maxTouchPoints > 0 || window.navigator.msMaxTouchPoints > 0
 
         document.addEventListener('mousedown', (e) => {
-            if (isTouch()){
+            if (isTouch()) {
                 console.log('t111111tttttttttttttttttt - click');
-            }
-            else console.log('ttttttttttttttttttt - click');
+            } else console.log('ttttttttttttttttttt - click');
         });
     });
 </script>
@@ -112,6 +111,7 @@
     let curTrackId
     let curTrackRow
     let playing = 0
+    let playingFirst = 0
     let intCurTime
     let intCurTime2
     let audio = document.querySelector('#player');
@@ -310,6 +310,7 @@
                                 document.querySelector('.popup_player_content .play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%23000%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22id-play_48__Page-2%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22id-play_48__play_48%22%3E%3Cpath%20id%3D%22id-play_48__Rectangle-737%22%20d%3D%22M0%200h48v48H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14.4%208.76l24.02%2013.85a1.6%201.6%200%20010%202.78L14.4%2039.24a1.6%201.6%200%2001-2.4-1.39v-27.7a1.6%201.6%200%20012.4-1.39z%22%20id%3D%22id-play_48__Mask%22%20fill%3D%22currentColor%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 48px no-repeat"
                                 audio.pause()
                                 playing = 0
+                                playingFirst = 1
                             } else {
                                 curTrackRow.children[0].children[0].style.background = 'url(\'data:image/svg+xml;charset=utf-8,%0A%3Csvg%20%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.71%205c.45%200%20.61.05.78.13.16.1.29.22.38.38.08.17.13.33.13.78V17.7c0%20.45-.05.61-.13.78a.91.91%200%2001-.38.38c-.17.08-.33.13-.78.13H6.8c-.45%200-.61-.05-.78-.13a.91.91%200%2001-.38-.38c-.08-.17-.13-.33-.13-.78V6.3c0-.45.05-.61.13-.78.1-.16.22-.29.38-.38.17-.08.33-.13.78-.13zm8%200c.45%200%20.61.05.78.13.16.1.29.22.38.38.08.17.13.33.13.78V17.7c0%20.45-.05.61-.13.78a.91.91%200%2001-.38.38c-.17.08-.33.13-.78.13H14.8c-.45%200-.61-.05-.78-.13a.91.91%200%2001-.38-.38c-.08-.17-.13-.33-.13-.78V6.3c0-.45.05-.61.13-.78.1-.16.22-.29.38-.38.17-.08.33-.13.78-.13z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E\') center / 24px no-repeat, #fff'
                                 document.querySelector('.footer_play').style.background = "url(\'data:image/svg+xml;charset=utf-8,%0A%3Csvg%20%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.71%205c.45%200%20.61.05.78.13.16.1.29.22.38.38.08.17.13.33.13.78V17.7c0%20.45-.05.61-.13.78a.91.91%200%2001-.38.38c-.17.08-.33.13-.78.13H6.8c-.45%200-.61-.05-.78-.13a.91.91%200%2001-.38-.38c-.08-.17-.13-.33-.13-.78V6.3c0-.45.05-.61.13-.78.1-.16.22-.29.38-.38.17-.08.33-.13.78-.13zm8%200c.45%200%20.61.05.78.13.16.1.29.22.38.38.08.17.13.33.13.78V17.7c0%20.45-.05.61-.13.78a.91.91%200%2001-.38.38c-.17.08-.33.13-.78.13H14.8c-.45%200-.61-.05-.78-.13a.91.91%200%2001-.38-.38c-.08-.17-.13-.33-.13-.78V6.3c0-.45.05-.61.13-.78.1-.16.22-.29.38-.38.17-.08.33-.13.78-.13z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E\') center / 24px no-repeat, #fff"
@@ -328,6 +329,7 @@
                                 curTrackRow.querySelectorAll('.volume_transition').forEach((el) => el.style.left = 75 + '%')
                                 curTrackRow.querySelectorAll('.volume_value').forEach((el) => el.style.width = 75 + '%')
                             }
+                            playing = 1
                             document.querySelector('.footer_player_wrapper').style.display = 'block'
                             curTrackRow.querySelector('.progress_seek').style.backgroundImage = /*#b8c7d7*/ 'url("https://st1-91.vk.com/images/audio_progress.png")'//linear-gradient(45deg,rgba(255,255,255,.55) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.55) 50%,rgba(255,255,255,.55) 75%,transparent 75%,transparent)'
                             //curTrackRow.querySelector('.progress_seek').style.backgroundSize = '1rem 1rem'
@@ -370,8 +372,7 @@
                             if (Hls.isSupported()) {
                                 hls.loadSource(curTrackRow.querySelector('.src_track').innerText);
                                 hls.attachMedia(audio);
-                            }
-                            else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
+                            } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
                                 video.src = curTrackRow.querySelector('.src_track').innerText;
                                 audio = video;
                                 hls.loadSource(curTrackRow.querySelector('.src_track').innerText);
@@ -386,8 +387,9 @@
                                 );
                                 if (data.levels.length > num_data_levels) {
                                     localStorage.getItem('volume') ? hls.media.volume = localStorage.getItem('volume') : hls.media.volume = 0.75
-                                    if(playing == 0)
+                                    if (playingFirst == 0) {
                                         audio.play()
+                                    }
                                 }
                             })
                             if (ifIntervalOne == 0) {
@@ -424,7 +426,7 @@
                                 artist: curTrackRow.querySelector('.audio .info').innerText.split(' - ')[1],
                                 artwork: [
                                     //Cюда обложки, берет первую 96x96 другие не надо
-                                    { src: 'https://via.placeholder.com/96',   sizes: '96x96',   type: 'image/png' },
+                                    {src: 'https://via.placeholder.com/96', sizes: '96x96', type: 'image/png'},
                                     // { src: 'https://via.placeholder.com/128', sizes: '128x128', type: 'image/png' },
                                     // { src: 'https://via.placeholder.com/192', sizes: '192x192', type: 'image/png' },
                                     // { src: 'https://via.placeholder.com/256', sizes: '256x256', type: 'image/png' },
@@ -435,9 +437,9 @@
                             // надо сделать
 
                             // ['play',          () => { /* ... */ }],
-                                //     ['pause',         () => { /* ... */ }],
-                                //     ['previoustrack', () => { /* ... */ }],
-                                //     ['nexttrack',     () => { /* ... */ }],
+                            //     ['pause',         () => { /* ... */ }],
+                            //     ['previoustrack', () => { /* ... */ }],
+                            //     ['nexttrack',     () => { /* ... */ }],
                             //['stop',          () => { /* ... */ }],
 
                             // const actionHandlers = [
@@ -462,9 +464,6 @@
                             //         console.log(`The media session action "${action}" is not supported yet.`);
                             //     }
                             // }
-
-
-
 
 
                             let inProgressBar1 = 0
@@ -524,7 +523,7 @@
                                 }
                             })
                             window.addEventListener('touchstart', (e) => {
-                                if (hls.media.duration&&e.composedPath().includes(curTrackRow.querySelector('.progress_wrap'))) {
+                                if (hls.media.duration && e.composedPath().includes(curTrackRow.querySelector('.progress_wrap'))) {
                                     inProgressBar1 = 1
                                     console.log(Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%')
                                     if (Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) <= 100) {
@@ -534,7 +533,7 @@
                                     progressOrNot1 = 1
                                     //console.log(e, + curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x + '  /  ' + curTrackRow.querySelector('.progress_seek').offsetWidth * 100)
                                 }
-                                if(e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))){
+                                if (e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))) {
                                     inProgressBar3 = 1
                                     document.querySelectorAll('.volume_value').forEach((el) => {
                                         if (Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
@@ -555,7 +554,7 @@
                                         hls.media.volume = r
                                     }
                                 }
-                                if (hls.media.duration&&e.composedPath().includes(document.querySelector('.popup_player_content .progress_wrap'))) {
+                                if (hls.media.duration && e.composedPath().includes(document.querySelector('.popup_player_content .progress_wrap'))) {
                                     inProgressBar2 = 1
                                     if (Math.floor((e.targetTouches[0].clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) >= 0 && Math.floor((e.targetTouches[0].clientX - document.querySelector('.popup_player_content .progress_seek').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_seek').offsetWidth * 100) <= 100) {
                                         document.querySelector('.popup_player_content .progress_transition_circle').style.left = (e.targetTouches[0].clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
@@ -734,11 +733,11 @@
                                 inProgressBar2 = 0
                                 inProgressBar3 = 0
                                 console.log('0 0')
-                                })
+                            })
                             let ghj = 0
                             intCurTime = setInterval(() => {
                                 if (!hls.media.paused) {
-                                    if (ghj == 0){
+                                    if (ghj == 0) {
                                         document.querySelector('.audios').insertBefore(document.createElement('button'), curTrackRow)
                                         ghj++
                                     }
@@ -824,9 +823,8 @@
                                             }
                                         }
                                     }
-                                }
-                                else{
-                                    if(document.querySelector('audio').duration == document.querySelector('audio').currentTime)
+                                } else {
+                                    if (document.querySelector('audio').duration == document.querySelector('audio').currentTime)
                                         curTrackRow.nextSibling.nextSibling.children[0].click()
                                 }
                             }, 100)
