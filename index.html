@@ -492,17 +492,17 @@
                             }
                             let dragProgressTouch1 = (e) => {
                                 console.log(e)
-                                let r = Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration)
+                                let r = Math.floor((e.changedTouches[0].clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * hls.media.duration)
                                 hls.media.currentTime = r
                             }
                             let dragProgressTouch2 = (e) => {
                                 console.log(e)
-                                let r = Math.floor((e.targetTouches[0].clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * hls.media.duration)
+                                let r = Math.floor((e.changedTouches[0].clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * hls.media.duration)
                                 hls.media.currentTime = r
                             }
                             let dragProgressTouch3 = (e) => {
                                 console.log(e)
-                                let r = (e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                                let r = (e.changedTouches[0].clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
                                 if (r < 0)
                                     hls.media.volume = 0
                                 else if (r > 1)
