@@ -510,7 +510,7 @@
                                         curTrackRow.querySelector('.progress_played').style.width = Math.floor((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
                                     }
                                     progressOrNot1 = 1
-                                    console.log((e.clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) + '  /  ' + curTrackRow.querySelector('.progress_seek').offsetWidth * 100)
+                                    console.log(e.clientX + '  -  ' + curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x + '  /  ' + curTrackRow.querySelector('.progress_seek').offsetWidth * 100)
                                 }
                                 if(e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))){
                                     inProgressBar3 = 1
