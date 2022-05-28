@@ -386,7 +386,8 @@
                                 );
                                 if (data.levels.length > num_data_levels) {
                                     localStorage.getItem('volume') ? hls.media.volume = localStorage.getItem('volume') : hls.media.volume = 0.75
-                                    audio.play()
+                                    if(playing == 0)
+                                        audio.play()
                                 }
                             })
                             if (ifIntervalOne == 0) {
