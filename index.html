@@ -385,8 +385,6 @@
                                     'manifest loaded, found ' + data.levels.length + ' quality level'
                                 );
                                 if (data.levels.length > num_data_levels) {
-                                    curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
-                                    document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
                                     localStorage.getItem('volume') ? hls.media.volume = localStorage.getItem('volume') : hls.media.volume = 0.75
                                     if(playing == 0)
                                         audio.play()
@@ -744,15 +742,15 @@
                                         document.querySelector('.audios').insertBefore(document.createElement('button'), curTrackRow)
                                         ghj++
                                     }
-                                    if (hls.media.currentTime > 0) {
-                                        curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
-                                        document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
-                                    }
                                     if (secToMin(hls.media.duration - Math.floor(hls.media.currentTime))) {
                                         if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) document.querySelector('.popup_player_content .duration_end').textContent = `-${secToMin(hls.media.duration - Math.floor(hls.media.currentTime))}`
                                         if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) curTrackRow.querySelector('.duration').textContent = `${secToMin(Math.floor(hls.media.currentTime))}`
                                     }
                                     let lenOfBuf = hls.media.buffered.end(hls.media.buffered.length - 1)
+                                    if (lenOfBuf > 0) {
+                                        curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
+                                        document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
+                                    }
                                     if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
                                     if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
                                     if (!inProgressBar3 && hls.media.volume) document.querySelectorAll('.volume_value').forEach((el) => el.style.width = hls.media.volume * 100 + '%')
