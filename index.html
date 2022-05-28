@@ -422,7 +422,7 @@
 
                             // document.title = curTrackRow.querySelector('.audio .info').innerText.split(' - ')[0]+' - '+curTrackRow.querySelector('.audio .info').innerText.split(' - ')[1];
 
-                            curTrackFromLocalStorage = localStorage.getItem('curTrack')
+                            curTrackFromLocalStorage = JSON.parse(localStorage.getItem('curTrack'))
                             navigator.mediaSession.metadata = new MediaMetadata({
                                 title: curTrackFromLocalStorage.title,
                                 artist: curTrackFromLocalStorage.artist,
