@@ -435,7 +435,7 @@
                                     // { src: 'https://via.placeholder.com/384', sizes: '384x384', type: 'image/png' },
                                     // { src: 'https://via.placeholder.com/512', sizes: '512x512', type: 'image/png' },
                                 ]
-                            });
+                            })
                             // надо сделать
 
                             // ['play',          () => { /* ... */ }],
@@ -444,11 +444,49 @@
                             //     ['nexttrack',     () => { /* ... */ }],
                             //['stop',          () => { /* ... */ }],
 
-                            // const actionHandlers = [
-                            //     ['play',          () => { /* ... */ }],
-                            //     ['pause',         () => { /* ... */ }],
-                            //     ['previoustrack', () => { /* ... */ }],
-                            //     ['nexttrack',     () => { /* ... */ }],
+                            const actionHandlers = [
+                                 ['play',          () => {
+                                         curTrackRow.children[0].children[0].style.background = 'url(\'data:image/svg+xml;charset=utf-8,%0A%3Csvg%20%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.71%205c.45%200%20.61.05.78.13.16.1.29.22.38.38.08.17.13.33.13.78V17.7c0%20.45-.05.61-.13.78a.91.91%200%2001-.38.38c-.17.08-.33.13-.78.13H6.8c-.45%200-.61-.05-.78-.13a.91.91%200%2001-.38-.38c-.08-.17-.13-.33-.13-.78V6.3c0-.45.05-.61.13-.78.1-.16.22-.29.38-.38.17-.08.33-.13.78-.13zm8%200c.45%200%20.61.05.78.13.16.1.29.22.38.38.08.17.13.33.13.78V17.7c0%20.45-.05.61-.13.78a.91.91%200%2001-.38.38c-.17.08-.33.13-.78.13H14.8c-.45%200-.61-.05-.78-.13a.91.91%200%2001-.38-.38c-.08-.17-.13-.33-.13-.78V6.3c0-.45.05-.61.13-.78.1-.16.22-.29.38-.38.17-.08.33-.13.78-.13z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E\') center / 24px no-repeat, #fff'
+                                         document.querySelector('.footer_play').style.background = "url(\'data:image/svg+xml;charset=utf-8,%0A%3Csvg%20%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.71%205c.45%200%20.61.05.78.13.16.1.29.22.38.38.08.17.13.33.13.78V17.7c0%20.45-.05.61-.13.78a.91.91%200%2001-.38.38c-.17.08-.33.13-.78.13H6.8c-.45%200-.61-.05-.78-.13a.91.91%200%2001-.38-.38c-.08-.17-.13-.33-.13-.78V6.3c0-.45.05-.61.13-.78.1-.16.22-.29.38-.38.17-.08.33-.13.78-.13zm8%200c.45%200%20.61.05.78.13.16.1.29.22.38.38.08.17.13.33.13.78V17.7c0%20.45-.05.61-.13.78a.91.91%200%2001-.38.38c-.17.08-.33.13-.78.13H14.8c-.45%200-.61-.05-.78-.13a.91.91%200%2001-.38-.38c-.08-.17-.13-.33-.13-.78V6.3c0-.45.05-.61.13-.78.1-.16.22-.29.38-.38.17-.08.33-.13.78-.13z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E\') center / 24px no-repeat, #fff"
+                                         document.querySelector('.popup_player_content .play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%23000%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h48v48H0z%22%20opacity%3D%22.4%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M17.15%206c1.34%200%201.83.14%202.32.4.48.26.87.65%201.13%201.13.26.5.4.98.4%202.32v28.3c0%201.34-.14%201.83-.4%202.32-.26.48-.65.87-1.13%201.13-.5.26-.98.4-2.32.4h-5.3c-1.34%200-1.83-.14-2.32-.4a2.73%202.73%200%2001-1.13-1.13c-.26-.5-.4-.98-.4-2.32V9.85c0-1.34.14-1.83.4-2.32.26-.48.65-.87%201.13-1.13.5-.26.98-.4%202.32-.4zm19%200c1.34%200%201.83.14%202.32.4.48.26.87.65%201.13%201.13.26.5.4.98.4%202.32v28.3c0%201.34-.14%201.83-.4%202.32-.26.48-.65.87-1.13%201.13-.5.26-.98.4-2.32.4h-5.3c-1.34%200-1.83-.14-2.32-.4a2.73%202.73%200%2001-1.13-1.13c-.26-.5-.4-.98-.4-2.32V9.85c0-1.34.14-1.83.4-2.32.26-.48.65-.87%201.13-1.13.5-.26.98-.4%202.32-.4z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 48px no-repeat"
+                                         audio.play()
+                                         playing = 1
+                                 }],
+                                 ['pause',         () => {
+                                     curTrackRow.children[0].children[0].style.background = 'url(\'data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.13%205.1l10.5%206.25a.75.75%200%20010%201.29l-10.5%206.25A.75.75%200%20017%2018.25V5.75a.75.75%200%20011.13-.64z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E\') center / 24px no-repeat, #fff'
+                                     document.querySelector('.footer_play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%233f8ae0%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M8.13%205.1l10.5%206.25a.75.75%200%20010%201.29l-10.5%206.25A.75.75%200%20017%2018.25V5.75a.75.75%200%20011.13-.64z%22%20fill%3D%22currentColor%22%20fill-rule%3D%22nonzero%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 24px no-repeat, #fff"
+                                     document.querySelector('.popup_player_content .play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%23000%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22id-play_48__Page-2%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22id-play_48__play_48%22%3E%3Cpath%20id%3D%22id-play_48__Rectangle-737%22%20d%3D%22M0%200h48v48H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14.4%208.76l24.02%2013.85a1.6%201.6%200%20010%202.78L14.4%2039.24a1.6%201.6%200%2001-2.4-1.39v-27.7a1.6%201.6%200%20012.4-1.39z%22%20id%3D%22id-play_48__Mask%22%20fill%3D%22currentColor%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 48px no-repeat"
+                                     audio.pause()
+                                     playing = 0
+                                 }],
+                                 ['previoustrack', () => {
+                                     playing = 0
+                                     if (shuffle == 1) {
+                                         document.querySelectorAll('.audio')[Math.floor(Math.random() * document.querySelectorAll('.audio').length)].children[0].click()
+                                     } else {
+                                         if (curTrackRow.previousSibling.previousSibling)
+                                             curTrackRow.previousSibling.previousSibling.children[0].click()
+                                         else {
+                                             document.querySelectorAll('.audio')[document.querySelectorAll('.audio').length - 1].children[0].click()
+                                         }
+                                     }
+                                     document.querySelector('.popup_player_content .progress_transition_circle').style.left = '0%'
+                                     document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
+                                 }],
+                                 ['nexttrack',     () => {
+                                     playing = 0
+                                     if (shuffle == 1) {
+                                         document.querySelectorAll('.audio')[Math.floor(Math.random() * document.querySelectorAll('.audio').length)].children[0].click()
+                                     } else {
+                                         if (curTrackRow.nextSibling.nextSibling)
+                                             curTrackRow.nextSibling.nextSibling.children[0].click()
+                                         else {
+                                             document.querySelectorAll('.audio')[0].children[0].click()
+                                         }
+                                     }
+                                     document.querySelector('.popup_player_content .progress_transition_circle').style.left = '0%'
+                                     document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
+                                 }],
                             //     ['stop',          () => { /* ... */ }],
                             //     ['seekbackward',  (details) => { /* ... */ }],
                             //     ['seekforward',   (details) => { /* ... */ }],
@@ -457,15 +495,15 @@
                             //     ['togglemicrophone', () => { /* ... */ }],
                             //     ['togglecamera',     () => { /* ... */ }],
                             //     ['hangup',           () => { /* ... */ }],
-                            // ];
+                             ];
                             //
-                            // for (const [action, handler] of actionHandlers) {
-                            //     try {
-                            //         navigator.mediaSession.setActionHandler(action, handler);
-                            //     } catch (error) {
-                            //         console.log(`The media session action "${action}" is not supported yet.`);
-                            //     }
-                            // }
+                             for (const [action, handler] of actionHandlers) {
+                                 try {
+                                     navigator.mediaSession.setActionHandler(action, handler);
+                                 } catch (error) {
+                                     console.log(`The media session action "${action}" is not supported yet.`);
+                                 }
+                             }
 
 
                             let inProgressBar1 = 0
