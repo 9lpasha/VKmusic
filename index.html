@@ -544,6 +544,18 @@
                                     document.querySelector('.popup_player_content .progress_transition_circle').style.left = '0%'
                                     document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
                                 }],
+                                ['seekbackward', () => {
+                                    if (hls.media.currentTime - 10 > hls.media.duration)
+                                        hls.media.currentTime -= 10
+                                }],
+                                ['seekforward', () => {
+                                    if (hls.media.currentTime - 10 > hls.media.duration)
+                                        hls.media.currentTime += 10
+                                }],
+                                ['stop', () => {
+                                    hls.media.currentTime = 0
+                                    audio.pause()
+                                }],
                             ];
 
                             for (const [action, handler] of actionHandlers) {
@@ -564,7 +576,7 @@
 
                             }
 
-                            if('mediaSession' in navigator){
+                            if ('mediaSession' in navigator) {
                                 const events = ['paused', 'playing', 'durationchange', 'ratechange', 'timechange']
                                 for (const event of events) {
                                     audio.addEventListener(event, updatePositionState)
