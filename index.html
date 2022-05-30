@@ -527,9 +527,9 @@
                             }
 
                             navigator.mediaSession.setPositionState({
-                                duration: audio.duration,
-                                playbackRate: audio.playbackRate,
-                                position: audio.currentTime
+                                duration: hls.media.duration,
+                                playbackRate: hls.media.playbackRate,
+                                position: hls.media.currentTime
                             });
 
                             let inProgressBar1 = 0
