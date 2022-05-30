@@ -860,11 +860,6 @@
                                         //document.querySelector('.audios').insertBefore(document.createElement('button'), curTrackRow)
                                         ghj++
                                     }
-                                    navigator.mediaSession.setPositionState({
-                                        duration: hls.media.duration,
-                                        playbackRate: hls.media.playbackRate,
-                                        position: hls.media.currentTime,
-                                    });
                                     if (secToMin(hls.media.duration - Math.floor(hls.media.currentTime))) {
                                         if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) document.querySelector('.popup_player_content .duration_end').textContent = `-${secToMin(hls.media.duration - Math.floor(hls.media.currentTime))}`
                                         if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) curTrackRow.querySelector('.duration').textContent = `${secToMin(Math.floor(hls.media.currentTime))}`
@@ -873,6 +868,11 @@
                                     if (lenOfBuf > 0) {
                                         curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
                                         document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
+                                        navigator.mediaSession.setPositionState({
+                                            duration: hls.media.duration,
+                                            playbackRate: 1,
+                                            position: hls.media.currentTime,
+                                        });
                                     }
                                     if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
                                     if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
