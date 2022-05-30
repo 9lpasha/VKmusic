@@ -123,6 +123,15 @@
     window.progressOrNot2 = 0
 
 
+    function updatePositionState() {
+        navigator.mediaSession.setPositionState({
+            duration: hls.media.duration,
+            playbackRate: hls.media.playbackRate,
+            position: hls.media.currentTime
+        });
+    }
+
+
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -493,6 +502,7 @@
                                      audio.pause()
                                      playing = 0
                                  }],
+                                 ['seekto',        (details) => { hls.media.currentTime = details.seekTime}],
                                  ['previoustrack', () => {
                                      playing = 0
                                      if (shuffle == 1) {
