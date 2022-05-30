@@ -545,11 +545,11 @@
                                     document.querySelector('.popup_player_content .duration_start').textContent = '0:00'
                                 }],
                                 ['seekbackward', () => {
-                                    if (hls.media.currentTime - 10 > hls.media.duration)
+                                    if (hls.media.currentTime - 10 > 0)
                                         hls.media.currentTime -= 10
                                 }],
                                 ['seekforward', () => {
-                                    if (hls.media.currentTime - 10 > hls.media.duration)
+                                    if (hls.media.currentTime + 10 < hls.media.duration)
                                         hls.media.currentTime += 10
                                 }],
                                 ['stop', () => {
