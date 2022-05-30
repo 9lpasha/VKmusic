@@ -123,15 +123,6 @@
     window.progressOrNot2 = 0
 
 
-    function updatePositionState() {
-        navigator.mediaSession.setPositionState({
-            duration: hls.media.duration,
-            playbackRate: hls.media.playbackRate,
-            position: hls.media.currentTime
-        });
-    }
-
-
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -213,7 +204,7 @@
                 }
 
 
-                let inprogressbar
+                let inprogressbar = 0
                 let dragrrogress = (e) => {
                     console.log(e)
                     let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
@@ -227,7 +218,7 @@
                 }
                 let dragrrogress2 = (e) => {
                     console.log(e)
-                    let r = (e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                    let r = (e.changedTouches[0].clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
                     if (r < 0) {
                         localStorage.setItem('volume', 0)
                     } else if (r > 1) {
@@ -319,11 +310,13 @@
                     }
                 })
                 window.addEventListener('touchend', (e) => {
-                    if (inprogressbar == 1) {
-                        dragrrogress2(e)
+                    if (e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))) {
+                        if (inprogressbar == 1) {
+                            dragrrogress2(e)
+                        }
+                        inprogressbar = 0
+                        console.log('0 0')
                     }
-                    inprogressbar = 0
-                    console.log('0 0')
                 })
 
 
@@ -463,11 +456,6 @@
                                     if (playingFirst == 0) {
                                         audio.play()
                                     }
-                                    /*navigator.mediaSession.setPositionState({
-                                        duration: hls.media.duration,
-                                        playbackRate: 1,
-                                        position: hls.media.currentTime/hls.media.duration
-                                    });*/
                                 }
                             })
                             if (ifIntervalOne == 0) {
@@ -835,21 +823,23 @@
                                 console.log('0 0')
                             })
                             window.addEventListener('touchend', (e) => {
-                                console.log(e)
-                                console.log('beg')
-                                if (inProgressBar1 == 1) {
-                                    dragProgressTouch1(e)
+                                if (e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))) {
+                                    console.log(e)
+                                    console.log('beg')
+                                    if (inProgressBar1 == 1) {
+                                        dragProgressTouch1(e)
+                                    }
+                                    if (inProgressBar2 == 1) {
+                                        dragProgressTouch2(e)
+                                    }
+                                    if (inProgressBar3 == 1) {
+                                        dragProgressTouch3(e)
+                                    }
+                                    inProgressBar1 = 0
+                                    inProgressBar2 = 0
+                                    inProgressBar3 = 0
+                                    console.log('0 0')
                                 }
-                                if (inProgressBar2 == 1) {
-                                    dragProgressTouch2(e)
-                                }
-                                if (inProgressBar3 == 1) {
-                                    dragProgressTouch3(e)
-                                }
-                                inProgressBar1 = 0
-                                inProgressBar2 = 0
-                                inProgressBar3 = 0
-                                console.log('0 0')
                             })
                             let ghj = 0
                             intCurTime = setInterval(() => {
