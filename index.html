@@ -217,7 +217,24 @@
                 let dragrrogress = (e) => {
                     console.log(e)
                     let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
-                    localStorage.setItem('volume', r)
+                    if (r < 0) {
+                        localStorage.setItem('volume', 0)
+                    } else if (r > 1) {
+                        localStorage.setItem('volume', 1)
+                    } else {
+                        localStorage.setItem('volume', r)
+                    }
+                }
+                let dragrrogress2 = (e) => {
+                    console.log(e)
+                    let r = (e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                    if (r < 0) {
+                        localStorage.setItem('volume', 0)
+                    } else if (r > 1) {
+                        localStorage.setItem('volume', 1)
+                    } else {
+                        localStorage.setItem('volume', r)
+                    }
                 }
                 curTrackRow.querySelector('.volume_wrap').addEventListener('mousedown', (e) => {
                     inprogressbar = 1
@@ -275,6 +292,7 @@
                         })
                         progressOrNot1 = 1
                         let r = (e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                        console.log(r)
                         localStorage.setItem('volume', r)
                     }
                 })
@@ -290,6 +308,7 @@
                                 el.style.left = Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
                         })
                         let r = (e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                        console.log(r)
                         if (r < 0) {
                             localStorage.setItem('volume', 0)
                         } else if (r > 1) {
@@ -301,7 +320,7 @@
                 })
                 window.addEventListener('touchend', (e) => {
                     if (inprogressbar == 1) {
-                        dragrrogress(e)
+                        dragrrogress2(e)
                     }
                     inprogressbar = 0
                     console.log('0 0')
