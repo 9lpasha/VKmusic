@@ -252,6 +252,50 @@
                     inprogressbar = 0
                     console.log('0 0')
                 })
+                window.addEventListener('touchstart', (e) => {
+                    if(e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))){
+                        inprogressbar = 1
+                        document.querySelectorAll('.volume_value').forEach((el) => {
+                            if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                el.style.width = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                        })
+                        document.querySelectorAll('.volume_transition').forEach((el) => {
+                            if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                el.style.left = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                        })
+                        progressOrNot1 = 1
+                        let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                        localStorage.setItem('volume', r)
+                    }
+                })
+
+                window.addEventListener('touchmove', (e) => {
+                    if (inprogressbar == 1) {
+                        document.querySelectorAll('.volume_value').forEach((el) => {
+                            if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                el.style.width = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                        })
+                        document.querySelectorAll('.volume_transition').forEach((el) => {
+                            if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                el.style.left = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                        })
+                        let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                        if (r < 0) {
+                            localStorage.setItem('volume', 0)
+                        } else if (r > 1) {
+                            localStorage.setItem('volume', 1)
+                        } else {
+                            localStorage.setItem('volume', r)
+                        }
+                    }
+                })
+                window.addEventListener('touchend', (e) => {
+                    if (inprogressbar == 1) {
+                        dragrrogress(e)
+                    }
+                    inprogressbar = 0
+                    console.log('0 0')
+                })
 
 
                 curTrackRow.querySelectorAll('.audio .author_rightfromtitle').forEach((el) => {
