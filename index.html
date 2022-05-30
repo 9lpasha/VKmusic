@@ -860,6 +860,11 @@
                                         //document.querySelector('.audios').insertBefore(document.createElement('button'), curTrackRow)
                                         ghj++
                                     }
+                                    navigator.mediaSession.setPositionState({
+                                        duration: hls.media.duration,
+                                        playbackRate: hls.media.playbackRate,
+                                        position: hls.media.currentTime,
+                                    });
                                     if (secToMin(hls.media.duration - Math.floor(hls.media.currentTime))) {
                                         if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) document.querySelector('.popup_player_content .duration_end').textContent = `-${secToMin(hls.media.duration - Math.floor(hls.media.currentTime))}`
                                         if (!inProgressBar1 && !inProgressBar2 && hls.media.currentTime && hls.media.duration) curTrackRow.querySelector('.duration').textContent = `${secToMin(Math.floor(hls.media.currentTime))}`
