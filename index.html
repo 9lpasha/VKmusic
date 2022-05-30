@@ -873,6 +873,7 @@
                                             playbackRate: hls.media.playbackRate,
                                             position: 0
                                         });
+                                        console.log(navigator.mediaSession.positionState)
                                     }
                                     if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
                                     if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
