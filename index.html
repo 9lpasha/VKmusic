@@ -254,32 +254,33 @@
                 })
                 window.addEventListener('touchstart', (e) => {
                     if(e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))){
+                        console.log('nibjk')
                         inprogressbar = 1
                         document.querySelectorAll('.volume_value').forEach((el) => {
-                            if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
-                                el.style.width = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                            if (Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                el.style.width = Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
                         })
                         document.querySelectorAll('.volume_transition').forEach((el) => {
-                            if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
-                                el.style.left = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                            if (Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                el.style.left = Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
                         })
                         progressOrNot1 = 1
-                        let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                        let r = (e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
                         localStorage.setItem('volume', r)
                     }
                 })
 
                 window.addEventListener('touchmove', (e) => {
-                    if (inprogressbar == 1) {
+                    if (inprogressbar == 1&&e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))) {
                         document.querySelectorAll('.volume_value').forEach((el) => {
-                            if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
-                                el.style.width = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                            if (Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                el.style.width = Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
                         })
                         document.querySelectorAll('.volume_transition').forEach((el) => {
-                            if (Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
-                                el.style.left = Math.floor((e.clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
+                            if (Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) >= 0 && Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) <= 100)
+                                el.style.left = Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_wrap').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_wrap').offsetWidth * 100) + '%'
                         })
-                        let r = (e.clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
+                        let r = (e.targetTouches[0].clientX - curTrackRow.querySelector('.volume_display').getBoundingClientRect().x) / curTrackRow.querySelector('.volume_display').offsetWidth
                         if (r < 0) {
                             localStorage.setItem('volume', 0)
                         } else if (r > 1) {
@@ -422,8 +423,8 @@
                                 hls.loadSource(curTrackRow.querySelector('.src_track').innerText);
                                 hls.attachMedia(audio);
                                 curTrackRow.querySelector('.volume_wrap').style.display = 'none';
-
                             }
+
 
                             hls.on(Hls.Events.MANIFEST_LOADED, function (event, data) {
                                 console.log(
@@ -524,6 +525,12 @@
                                      console.log(`The media session action "${action}" is not supported yet.`);
                                  }
                             }
+
+                            navigator.mediaSession.setPositionState({
+                                duration: audio.duration,
+                                playbackRate: audio.playbackRate,
+                                position: audio.currentTime
+                            });
 
                             let inProgressBar1 = 0
                             let inProgressBar2 = 0
