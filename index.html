@@ -284,6 +284,7 @@
                 })
                 window.addEventListener('touchstart', (e) => {
                     if (e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))) {
+                        document.body.style.overflow = 'hidden'
                         console.log('nibjk')
                         inprogressbar = 1
                         document.querySelectorAll('.volume_value').forEach((el) => {
@@ -326,6 +327,7 @@
                     if (e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))) {
                         if (inprogressbar == 1) {
                             dragrrogress2(e)
+                            document.body.style.overflow = 'scroll'
                         }
                         inprogressbar = 0
                         console.log('0 0')
@@ -509,6 +511,7 @@
                                         playbackRate: hls.media.playbackRate,
                                         position: hls.media.currentTime
                                     });
+                                    console.log(hls.media)
                                 }
 
                                 const actionHandlers = [
@@ -667,7 +670,7 @@
                                             curTrackRow.querySelector('.progress_played').style.width = Math.floor((e.targetTouches[0].clientX - curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x) / curTrackRow.querySelector('.progress_seek').offsetWidth * 100) + '%'
                                         }
                                         progressOrNot1 = 1
-                                        //console.log(e, + curTrackRow.querySelector('.progress_seek').getBoundingClientRect().x + '  /  ' + curTrackRow.querySelector('.progress_seek').offsetWidth * 100)
+                                        document.body.style.overflow = 'hidden'
                                     }
                                     if (e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))) {
                                         inProgressBar3 = 1
@@ -689,6 +692,7 @@
                                         else {
                                             hls.media.volume = r
                                         }
+                                        document.body.style.overflow = 'hidden'
                                     }
                                     if (hls.media.duration && e.composedPath().includes(document.querySelector('.popup_player_content .progress_wrap'))) {
                                         inProgressBar2 = 1
@@ -697,6 +701,7 @@
                                             document.querySelector('.popup_player_content .progress_played').style.width = (e.targetTouches[0].clientX - document.querySelector('.popup_player_content .progress_wrap').getBoundingClientRect().x) / document.querySelector('.popup_player_content .progress_wrap').offsetWidth * 100 + '%'
                                         }
                                         progressOrNot1 = 1
+                                        document.body.style.overflow = 'hidden'
                                     }
                                 })
                                 document.querySelector('.popup_player_content .progress_wrap').addEventListener('mousedown', (e) => {
@@ -837,7 +842,6 @@
                                     }
                                 })
                                 window.addEventListener('mouseup', (e) => {
-
                                     console.log('beg')
                                     if (inProgressBar1 == 1) {
                                         dragProgress1(e)
@@ -870,6 +874,7 @@
                                         inProgressBar2 = 0
                                         inProgressBar3 = 0
                                         console.log('0 0')
+                                        document.body.style.overflow = 'scroll'
                                     }
                                 })
                                 let ghj = 0
