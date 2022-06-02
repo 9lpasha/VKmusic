@@ -512,10 +512,10 @@
                                     document.querySelector('.popup_player_content .play').style.background = "url('data:image/svg+xml;charset=utf-8,%3Csvg%20style%3D%22color%3A%20%23000%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22id-play_48__Page-2%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22id-play_48__play_48%22%3E%3Cpath%20id%3D%22id-play_48__Rectangle-737%22%20d%3D%22M0%200h48v48H0z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M14.4%208.76l24.02%2013.85a1.6%201.6%200%20010%202.78L14.4%2039.24a1.6%201.6%200%2001-2.4-1.39v-27.7a1.6%201.6%200%20012.4-1.39z%22%20id%3D%22id-play_48__Mask%22%20fill%3D%22currentColor%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E') center / 48px no-repeat"
                                     audio.pause()
                                     playing = 0
-                                }]/*,
+                                }],
                                 ['seekto', (details) => {
                                     hls.media.currentTime = details.seekTime
-                                }],*/
+                                }],
                                 ['previoustrack', () => {
                                     playing = 0
                                     if (shuffle == 1) {
