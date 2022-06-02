@@ -163,12 +163,12 @@
                 title: '',
                 artist: '',
                 artwork: [
-                    { src: 'https://dummyimage.com/96x96',   sizes: '96x96',   type: 'image/png' },
-                    { src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png' },
-                    { src: 'https://dummyimage.com/192x192', sizes: '192x192', type: 'image/png' },
-                    { src: 'https://dummyimage.com/256x256', sizes: '256x256', type: 'image/png' },
-                    { src: 'https://dummyimage.com/384x384', sizes: '384x384', type: 'image/png' },
-                    { src: 'https://dummyimage.com/512x512', sizes: '512x512', type: 'image/png' }
+                    {src: 'https://dummyimage.com/96x96', sizes: '96x96', type: 'image/png'},
+                    {src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png'},
+                    {src: 'https://dummyimage.com/192x192', sizes: '192x192', type: 'image/png'},
+                    {src: 'https://dummyimage.com/256x256', sizes: '256x256', type: 'image/png'},
+                    {src: 'https://dummyimage.com/384x384', sizes: '384x384', type: 'image/png'},
+                    {src: 'https://dummyimage.com/512x512', sizes: '512x512', type: 'image/png'}
                 ]
             })
 
@@ -840,7 +840,7 @@
                                 console.log('0 0')
                             })
                             window.addEventListener('touchend', (e) => {
-                                if (e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))||e.composedPath().includes(curTrackRow.querySelector('.progress_wrap'))) {
+                                if (e.composedPath().includes(curTrackRow.querySelector('.volume_wrap')) || e.composedPath().includes(curTrackRow.querySelector('.progress_wrap'))) {
                                     console.log(e)
                                     console.log('beg')
                                     if (inProgressBar1 == 1) {
@@ -860,9 +860,11 @@
                             })
                             let ghj = 0
                             let falgEnded = 0
-                            setTimeout(()=>{falgEnded = 1}, 1000)
+                            setTimeout(() => {
+                                falgEnded = 1
+                            }, 1000)
                             hls.media.onended = () => {
-                                if(falgEnded){
+                                if (falgEnded) {
                                     console.log('END---------------------------')
                                     //document.querySelector('.wrapper').click()
                                     clearInterval(intCurTime)
@@ -926,7 +928,6 @@
                                     }
                                 }
                             }
-                            let flagPos = 0
                             intCurTime = setInterval(() => {
                                 if (!hls.media.paused) {
                                     if (ghj == 0) {
@@ -941,45 +942,48 @@
                                     if (lenOfBuf > 0) {
                                         curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
                                         document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
-                                        if(!flagPos){
-                                            navigator.mediaSession.setPositionState({
-                                                duration: hls.media.duration,
-                                                playbackRate: hls.media.playbackRate,
-                                                position: 0
-                                            });
-                                            flagPos = 1
-                                        }
-                                        //console.log(navigator.mediaSession)//.positionState)
+                                        navigator.mediaSession.setPositionState({
+                                            duration: hls.media.duration,
+                                            playbackRate: hls.media.playbackRate,
+                                            position: 0
+                                        });
                                     }
-                                    if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                    if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                    if (!inProgressBar3 && hls.media.volume) document.querySelectorAll('.volume_value').forEach((el) => el.style.width = hls.media.volume * 100 + '%')
-                                    if (!inProgressBar3 && hls.media.volume) document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = hls.media.volume * 100 + '%')
-                                    if (!inProgressBar2) document.querySelector('.popup_player_content .progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                    if (!inProgressBar2) document.querySelector('.popup_player_content .progress_transition_circle').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
-                                    curTrackRow.querySelector('.progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
-                                    document.querySelector('.popup_player_content .progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
-                                    let curFormatTime
-                                    parseInt(hls.media.currentTime / 60) > 9 ? curFormatTime = parseInt(hls.media.currentTime / 60) + ':' : curFormatTime = parseInt(hls.media.currentTime / 60) + ':'
-                                    parseInt(hls.media.currentTime % 60) > 9 ? curFormatTime += parseInt(hls.media.currentTime % 60) : curFormatTime += '0' + parseInt(hls.media.currentTime % 60)
-                                    if (!inProgressBar2) document.querySelector('.popup_player_content .duration_start').textContent = curFormatTime
-                                } else {
-                                    /*if (document.querySelector('audio').duration == document.querySelector('audio').currentTime)
-                                        curTrackRow.nextSibling.nextSibling.children[0].click()*/
-                                    let lenOfBuf = hls.media.buffered.end(hls.media.buffered.length - 1)
-                                    if (lenOfBuf > 0) {
-                                        curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
-                                        document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
-                                    }
-                                    curTrackRow.querySelector('.progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
-                                    document.querySelector('.popup_player_content .progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
                                 }
-                            }, 100)
+                                if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_transition').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                if (!inProgressBar3 && hls.media.volume) document.querySelectorAll('.volume_value').forEach((el) => el.style.width = hls.media.volume * 100 + '%')
+                                if (!inProgressBar3 && hls.media.volume) document.querySelectorAll('.volume_transition').forEach((el) => el.style.left = hls.media.volume * 100 + '%')
+                                if (!inProgressBar2) document.querySelector('.popup_player_content .progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                if (!inProgressBar2) document.querySelector('.popup_player_content .progress_transition_circle').style.left = hls.media.currentTime / hls.media.duration * 100 + '%'
+                                curTrackRow.querySelector('.progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
+                                document.querySelector('.popup_player_content .progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
+                                let curFormatTime
+                                parseInt(hls.media.currentTime / 60) > 9 ? curFormatTime = parseInt(hls.media.currentTime / 60) + ':' : curFormatTime = parseInt(hls.media.currentTime / 60) + ':'
+                                parseInt(hls.media.currentTime % 60) > 9 ? curFormatTime += parseInt(hls.media.currentTime % 60) : curFormatTime += '0' + parseInt(hls.media.currentTime % 60)
+                                if (!inProgressBar2) document.querySelector('.popup_player_content .duration_start').textContent = curFormatTime
+                            }
+                        else
+                            {
+                                /*if (document.querySelector('audio').duration == document.querySelector('audio').currentTime)
+                                    curTrackRow.nextSibling.nextSibling.children[0].click()*/
+                                let lenOfBuf = hls.media.buffered.end(hls.media.buffered.length - 1)
+                                if (lenOfBuf > 0) {
+                                    curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
+                                    document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
+                                }
+                                curTrackRow.querySelector('.progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
+                                document.querySelector('.popup_player_content .progress_buffered').style.width = lenOfBuf / hls.media.duration * 100 + '%'
+                            }
                         }
+                    ,
+                        100
+                    )
                     }
                 }
-            })
+            }
         }
+    )
+    }
     }
 
     document.querySelector('.footer_play').onclick = () => {
