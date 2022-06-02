@@ -945,7 +945,7 @@
                                                 navigator.mediaSession.setPositionState({
                                                     duration: hls.media.duration,
                                                     playbackRate: hls.media.playbackRate,
-                                                    position: 0
+                                                    position: hls.media.currentTime
                                                 });
                                             }
                                             if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
