@@ -835,7 +835,7 @@
                                 console.log('0 0')
                             })
                             window.addEventListener('touchend', (e) => {
-                                if (e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))) {
+                                if (e.composedPath().includes(curTrackRow.querySelector('.volume_wrap'))||e.composedPath().includes(curTrackRow.querySelector('.progress_wrap'))) {
                                     console.log(e)
                                     console.log('beg')
                                     if (inProgressBar1 == 1) {
