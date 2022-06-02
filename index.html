@@ -158,7 +158,20 @@
         </div>
                 `
             })
-            //document.querySelectorAll('div').forEach((el)=>{el.draggable = true})
+
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: '',
+                artist: '',
+                artwork: [
+                    { src: 'https://dummyimage.com/96x96',   sizes: '96x96',   type: 'image/png' },
+                    { src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png' },
+                    { src: 'https://dummyimage.com/192x192', sizes: '192x192', type: 'image/png' },
+                    { src: 'https://dummyimage.com/256x256', sizes: '256x256', type: 'image/png' },
+                    { src: 'https://dummyimage.com/384x384', sizes: '384x384', type: 'image/png' },
+                    { src: 'https://dummyimage.com/512x512', sizes: '512x512', type: 'image/png' }
+                ]
+            })
+
             let inputDataTrack
             if (localStorage.getItem('curTrack')) {
                 document.querySelector('.footer_player_wrapper').style.display = 'block'
@@ -486,17 +499,9 @@
                             console.log(curTrack)
 
                             curTrackFromLocalStorage = JSON.parse(localStorage.getItem('curTrack'))
-                            navigator.mediaSession.metadata = new MediaMetadata({
-                                title: curTrackFromLocalStorage.title,
-                                artist: curTrackFromLocalStorage.artist/*,
-                                artwork: [
-                                    {
-                                        src: curTrackFromLocalStorage.album.thumb.photo_68,
-                                        sizes: '68x68',
-                                        type: 'image/png'
-                                    }
-                                ]*/
-                            })
+                            //if('mediaSession' in navigator)
+                            navigator.mediaSession.metadata.title = curTrackFromLocalStorage.title
+                            navigator.mediaSession.metadata.artist = curTrackFromLocalStorage.artist
 
                             const actionHandlers = [
                                 ['play', () => {
@@ -921,6 +926,7 @@
                                     }
                                 }
                             }
+                            let flagPos = 0
                             intCurTime = setInterval(() => {
                                 if (!hls.media.paused) {
                                     if (ghj == 0) {
@@ -935,11 +941,14 @@
                                     if (lenOfBuf > 0) {
                                         curTrackRow.querySelector('.progress_seek').style.background = '#ebedf0'
                                         document.querySelector('.popup_player_content .progress_seek').style.background = '#ebedf0'
-                                        /*navigator.mediaSession.setPositionState({
-                                            duration: hls.media.duration,
-                                            playbackRate: hls.media.playbackRate,
-                                            position: 0
-                                        });*/
+                                        if(!flagPos){
+                                            navigator.mediaSession.setPositionState({
+                                                duration: hls.media.duration,
+                                                playbackRate: hls.media.playbackRate,
+                                                position: 0
+                                            });
+                                            flagPos = 1
+                                        }
                                         //console.log(navigator.mediaSession)//.positionState)
                                     }
                                     if (!inProgressBar1 && !inProgressBar2) curTrackRow.querySelector('.progress_played').style.width = hls.media.currentTime / hls.media.duration * 100 + '%'
